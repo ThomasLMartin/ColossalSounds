@@ -10,11 +10,10 @@ namespace ColossalSounds.Services
 {
     public class InstrumentService
     {
-        private readonly int _instrumentId;
-
-        public InstrumentService(int instrumentId)
+        public Guid _userId;
+        public InstrumentService(Guid id)
         {
-            _instrumentId = instrumentId;
+            _userId = id;
         }
         public bool CreateInstrument(InstrumentCreate model)
         {
@@ -44,7 +43,6 @@ namespace ColossalSounds.Services
                 var query =
                     ctx
                         .Instruments
-                        .Where(e => e.InstrumentId == _instrumentId)
                         .Select(
                             e =>
                                 new InstrumentListItem
@@ -70,7 +68,7 @@ namespace ColossalSounds.Services
                 var entity =
                     ctx
                         .Instruments
-                        .Single(e => e.InstrumentId == id && e.InstrumentId == _instrumentId);
+                        .Single(e => e.InstrumentId == id);
                 return
                     new InstrumentDetail
                     {
@@ -93,12 +91,30 @@ namespace ColossalSounds.Services
                 var entity =
                     ctx
                         .Instruments
-                        .Single(e => e.InstrumentId == model.InstrumentId && e.InstrumentId == _instrumentId);
+                        .Single(e => e.InstrumentId == model.InstrumentId);
 
                 entity.InstrumentId = model.InstrumentId;
                 entity.Description = model.Description;
                 entity.Name = model.Name;
                 entity.ModelName = model.ModelName;
+                entity.Brand = model.Brand;
+                entity.ExpLvl = model.ExpLvl;
+                entity.Quantity = model.Quantity;
+                entity.Price = model.Price;
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteInsturment(int instrumentId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Instruments.Single(e => e.InstrumentId == instrumentId);
+
+                ctx.Instruments.Remove(entity);
+
                 return ctx.SaveChanges() == 1;
             }
         }
