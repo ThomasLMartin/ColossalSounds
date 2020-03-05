@@ -10,7 +10,6 @@ namespace ColossalSounds.Services
 {
     public class AccessoryService
     {
-        private readonly List<Accessory> _accessories = new List<Accessory>();
         private readonly Guid _accessoryId;
 
         public AccessoryService(Guid accessoryId)
@@ -40,46 +39,73 @@ namespace ColossalSounds.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query = ctx.Accessories.Where(e => e.Id == _accessoryId)
-                    .Select(e => new AccessoryListItem
-                    {
-                        Id = e.Id,
-                        Name = e.Name,
-                        InstrumentAssociated = e.InstrumentAssociated,
-                        Brand = e.Brand,
-                        Quantity = e.Quantity,
-                        Price = e.Price
-                    }
+                var query =
+                    ctx
+                    .Accessories
+                    .Select(
+                        e => new AccessoryListItem
+                        {
+                            Id = e.Id,
+                            Name = e.Name,
+                            InstrumentAssociated = e.InstrumentAssociated,
+                            Brand = e.Brand,
+                            Quantity = e.Quantity,
+                            Price = e.Price
+                        }
                     );
                 return query.ToArray();
             }
         }
 
-        public bool UpdateAccessory(AccessoryEdit model)
+        public AccessoryDetail GetAccessoryById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Accessories.Single(e => e.Id == _accessoryId);
-                entity.Id = model.Id;
-                entity.Name = model.Name;
-                entity.InstrumentAssociated = model.InstrumentAssociated;
-                entity.Brand = model.Brand;
-                entity.Quantity = model.Quantity;
-                entity.Price = model.Price;
-                entity.Description = model.Description;
-
-                return ctx.SaveChanges() == 1;
+                var entity =
+                    ctx
+                        .Accessories
+                        .Single(e => e.Id == id);
+                return
+                    new AccessoryDetail
+                    {
+                        Name = entity.Name,
+                        Brand = entity.Brand,
+                        Quantity = entity.Quantity,
+                        Price = entity.Price,
+                        Description = entity.Description
+                    };
             }
         }
 
-        public bool DeleteAccessory(int accessId)
-        {
-            using (var ctx = new ApplicationDbContext())
+            public bool UpdateAccessory(AccessoryEdit model)
             {
-                var entity = ctx.Accessories.Single(e => e.Id == _accessoryId);
-                ctx.Accessories.Remove(entity);
-                return ctx.SaveChanges() == 1;
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity =
+                        ctx
+                        .Accessories
+                        .Single(e => e.Id == model.Id);
+
+                    entity.Id = model.Id;
+                    entity.Name = model.Name;
+                    entity.InstrumentAssociated = model.InstrumentAssociated;
+                    entity.Brand = model.Brand;
+                    entity.Quantity = model.Quantity;
+                    entity.Price = model.Price;
+                    entity.Description = model.Description;
+
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+
+            public bool DeleteAccessory(int accessoryId)
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity = ctx.Accessories.Single(e => e.Id == accessoryId);
+                    ctx.Accessories.Remove(entity);
+                    return ctx.SaveChanges() == 1;
+                }
             }
         }
     }
-}

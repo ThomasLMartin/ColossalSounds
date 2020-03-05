@@ -1,4 +1,5 @@
-﻿using ColossalSounds.Models.AccessoryModels;
+﻿using ColossalSounds.Data;
+using ColossalSounds.Models.AccessoryModels;
 using ColossalSounds.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -19,6 +20,7 @@ namespace ColossalSounds.WebAPI.Controllers
             return accessoryService;
         }
 
+        //GET
         public IHttpActionResult Get()
         {
             AccessoryService accessoryService = CreateAccessoryService();
@@ -26,6 +28,14 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok(accessory);
         }
 
+        public IHttpActionResult GetById(int id)
+        {
+            AccessoryService accessoryService = CreateAccessoryService();
+            var accessory = accessoryService.GetAccessoryById(id);
+            return Ok(accessory);
+        }
+
+        //POST
         public IHttpActionResult Post(AccessoryCreate accessory)
         {
             if (!ModelState.IsValid)
@@ -39,6 +49,7 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok();
         }
 
+        //PUT
         public IHttpActionResult Put(AccessoryEdit accessory)
         {
             if (!ModelState.IsValid)
@@ -52,6 +63,7 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok();
         }
 
+        //DELETE
         public IHttpActionResult Delete(int id)
         {
             var service = CreateAccessoryService();
