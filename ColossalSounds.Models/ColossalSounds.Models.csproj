@@ -59,6 +59,10 @@
     <Compile Include="AccessoryModels\AccessoryEdit.cs" />
     <Compile Include="AccessoryModels\AccessoryListItem.cs" />
     <Compile Include="InstrumentClassificationModels.cs" />
+    <Compile Include="InstrumentModel\InstrumentCreate.cs" />
+    <Compile Include="InstrumentModel\InstrumentDetail.cs" />
+    <Compile Include="InstrumentModel\InstrumentEdit.cs" />
+    <Compile Include="InstrumentModel\InstrumentListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Review_Models.cs" />
   </ItemGroup>

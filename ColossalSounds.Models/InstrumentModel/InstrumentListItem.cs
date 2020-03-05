@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ColossalSounds.Models.InstrumentModel
 {
-    public class InsturmentListItem
+    public class InstrumentListItem
     {
         public int InstrumentId { get; set; }
 
