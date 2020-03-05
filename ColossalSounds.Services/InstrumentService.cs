@@ -99,7 +99,7 @@ namespace ColossalSounds.Services
                 entity.Description = model.Description;
                 entity.Name = model.Name;
                 entity.ModelName = model.ModelName;
-
+                return ctx.SaveChanges() == 1;
             }
         }
     }
