@@ -28,6 +28,7 @@ namespace ColossalSounds.Services
                     ExpLvl = model.ExpLvl,
                     Quantity = model.Quantity,
                     Price = model.Price,
+                    OwnerId = _userId,
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -91,7 +92,7 @@ namespace ColossalSounds.Services
                 var entity =
                     ctx
                         .Instruments
-                        .Single(e => e.InstrumentId == model.InstrumentId);
+                        .Single(e => e.InstrumentId == model.InstrumentId && e.OwnerId == _userId);
 
                 entity.InstrumentId = model.InstrumentId;
                 entity.Description = model.Description;
@@ -111,7 +112,7 @@ namespace ColossalSounds.Services
             {
                 var entity =
                     ctx
-                        .Instruments.Single(e => e.InstrumentId == instrumentId);
+                        .Instruments.Single(e => e.InstrumentId == instrumentId && e.OwnerId == _userId);
 
                 ctx.Instruments.Remove(entity);
 
