@@ -88,9 +88,9 @@
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Instrument.cs" />
     <Compile Include="InstrumentClassification.cs" />
-    <Compile Include="Migrations\202003051932372_JH.cs" />
-    <Compile Include="Migrations\202003051932372_JH.Designer.cs">
-      <DependentUpon>202003051932372_JH.cs</DependentUpon>
+    <Compile Include="Migrations\202003051942123_First Migration.cs" />
+    <Compile Include="Migrations\202003051942123_First Migration.Designer.cs">
+      <DependentUpon>202003051942123_First Migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,8 +101,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003051932372_JH.resx">
-      <DependentUpon>202003051932372_JH.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003051942123_First Migration.resx">
+      <DependentUpon>202003051942123_First Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

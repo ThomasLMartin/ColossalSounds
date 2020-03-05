@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ColossalSounds.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,10 +15,10 @@ namespace ColossalSounds.Models.AccessoryModels
         [MaxLength(100, ErrorMessage = "There are too many characters in this field.")]
         public string Name { get; set; }
 
-        //[Required]
-        //[MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
-        //[MaxLength(100, ErrorMessage = "There are too many characters in this field.")]
-        //public InstrumentType InstrumentAssociated { get; set; }
+        [Required]
+        [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
+        [MaxLength(100, ErrorMessage = "There are too many characters in this field.")]
+        public InstrumentClassification InstrumentAssociated { get; set; }
 
         [Required]
         [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
