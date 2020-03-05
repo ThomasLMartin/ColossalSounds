@@ -44,6 +44,22 @@ namespace ColossalSounds.Services
                 return list.ToArray();
             }
         }
+        public Review GetByInstrumentId(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Reviews.Single(e => e.InstrumentId == id);
+                return entity;
+            }
+        }
+        public Review GetByAccessoryId(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Reviews.Single(e => e.AccessoryId == id);
+                return entity;
+            }
+        }
         public bool UpdateReview(ReviewEdit model)
         {
             using (var ctx = new ApplicationDbContext())

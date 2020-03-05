@@ -19,5 +19,7 @@ namespace ColossalSounds.Data
         public string Content { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
+        public int? InstrumentId { get; set; }
+        public int? AccessoryId { get; set; }
     }
 }
