@@ -10,7 +10,7 @@ namespace ColossalSounds.Data
     public class Accessory
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public string Name { get; set; }

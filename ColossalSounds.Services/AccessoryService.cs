@@ -10,9 +10,10 @@ namespace ColossalSounds.Services
 {
     public class AccessoryService
     {
-        private readonly int _accessoryId;
+        private readonly List<Accessory> _accessories = new List<Accessory>();
+        private readonly Guid _accessoryId;
 
-        public AccessoryService(int accessoryId)
+        public AccessoryService(Guid accessoryId)
         {
             _accessoryId = accessoryId;
         }
@@ -35,7 +36,7 @@ namespace ColossalSounds.Services
             }
         }
 
-        public IEnumerable<AccessoryListItem> GetAllNotes()
+        public IEnumerable<AccessoryListItem> GetAllAccessories()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -51,6 +52,33 @@ namespace ColossalSounds.Services
                     }
                     );
                 return query.ToArray();
+            }
+        }
+
+        public bool UpdateAccessory(AccessoryEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Accessories.Single(e => e.Id == _accessoryId);
+                entity.Id = model.Id;
+                entity.Name = model.Name;
+                entity.InstrumentAssociated = model.InstrumentAssociated;
+                entity.Brand = model.Brand;
+                entity.Quantity = model.Quantity;
+                entity.Price = model.Price;
+                entity.Description = model.Description;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteAccessory(int accessId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Accessories.Single(e => e.Id == _accessoryId);
+                ctx.Accessories.Remove(entity);
+                return ctx.SaveChanges() == 1;
             }
         }
     }

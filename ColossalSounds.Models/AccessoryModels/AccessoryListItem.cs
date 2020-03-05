@@ -10,7 +10,7 @@ namespace ColossalSounds.Models.AccessoryModels
 {
     public class AccessoryListItem
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public InstrumentClassification InstrumentAssociated { get; set; }
         public string Brand { get; set; }
