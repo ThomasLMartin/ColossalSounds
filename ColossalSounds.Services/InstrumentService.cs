@@ -37,7 +37,7 @@ namespace ColossalSounds.Services
             }
         }
 
-        public IEnumerable<InsturmentListItem> GetInstruemt()
+        public IEnumerable<InstrumentListItem> GetInstruemt()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -47,7 +47,7 @@ namespace ColossalSounds.Services
                         .Where(e => e.InstrumentId == _instrumentId)
                         .Select(
                             e =>
-                                new InsturmentListItem
+                                new InstrumentListItem
                                 {
                                     InstrumentId = e.InstrumentId,
                                     Description = e.Description,
