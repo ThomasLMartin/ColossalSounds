@@ -10,6 +10,8 @@ namespace ColossalSounds.Models
     {
         public string Title { get; set; }
         public string Content { get; set; }
+        public int? AccessoryId { get; set; }
+        public int? InstrumentId { get; set; }
     }
     public class ReviewListItem
     {
