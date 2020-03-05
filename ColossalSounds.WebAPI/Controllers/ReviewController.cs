@@ -27,17 +27,25 @@ namespace ColossalSounds.WebAPI.Controllers
         public IHttpActionResult GetByInstrumentId(int id)
         {
             var service = CreateReviewService();
-            var review = service.GetByInstrumentId(id);
-            return Ok(review);
+            var reviews = service.GetByInstrumentId(id);
+            return Ok(reviews);
         }
         public IHttpActionResult GetByAccessoryId(int id)
         {
             var service = CreateReviewService();
-            var review = service.GetByAccessoryId(id);
-            return Ok(review);
+            var reviews = service.GetByAccessoryId(id);
+            return Ok(reviews);
         }
         public IHttpActionResult PostReview(ReviewCreate model)
         {
+            if(model.AccessoryId == null && model.InstrumentId == null)
+            {
+                return BadRequest();
+            }
+            if(model.AccessoryId != null && model.InstrumentId != null)
+            {
+                return BadRequest();
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest();
