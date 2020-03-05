@@ -27,7 +27,6 @@ namespace ColossalSounds.Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
@@ -48,6 +47,7 @@ namespace ColossalSounds.Data
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
         }
+        public DbSet<Review> Reviews { get; set; }
     }
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
     {
