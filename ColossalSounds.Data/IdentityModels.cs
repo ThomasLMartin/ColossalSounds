@@ -32,6 +32,8 @@ namespace ColossalSounds.Data
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Instrument> Instruments { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder
