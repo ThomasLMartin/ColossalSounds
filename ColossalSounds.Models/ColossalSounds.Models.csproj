@@ -58,12 +58,18 @@
     <Compile Include="AccessoryModels\AccessoryDetail.cs" />
     <Compile Include="AccessoryModels\AccessoryEdit.cs" />
     <Compile Include="AccessoryModels\AccessoryListItem.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="InstrumentClassificationModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ColossalSounds.Data\ColossalSounds.Data.csproj">
+      <Project>{1B75E231-2F48-4AA8-8FF3-FBAABFBDA249}</Project>
+      <Name>ColossalSounds.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

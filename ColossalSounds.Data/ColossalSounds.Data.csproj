@@ -85,8 +85,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accessory.cs" />
-    <Compile Include="Class1.cs" />
+ 
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="InstrumentClassification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

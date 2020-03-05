@@ -55,7 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessoryService.cs" />
-    <Compile Include="Class1.cs" />
+ 
+    <Compile Include="InstrumentClassificationServices.cs" />
+
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
