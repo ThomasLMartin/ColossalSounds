@@ -10,13 +10,13 @@ namespace ColossalSounds.Data
     public class Accessory
     {
         [Key]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public string Name { get; set; }
 
-        //[Required]
-        //public InstrumentType InstrumentAssociated { get; set; }
+        [Required]
+        public InstrumentClassification InstrumentAssociated { get; set; }
 
         [Required]
         public string Brand { get; set; }
