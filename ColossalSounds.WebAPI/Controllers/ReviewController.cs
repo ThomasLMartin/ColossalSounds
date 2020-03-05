@@ -1,4 +1,5 @@
-﻿using ColossalSounds.Services;
+﻿using ColossalSounds.Models;
+using ColossalSounds.Services;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,46 @@ namespace ColossalSounds.WebAPI.Controllers
             var reviewService = new Review_Service(userId);
             return reviewService;
         }
-
+        public IHttpActionResult GetReviews()
+        {
+            var reviewService = CreateReviewService();
+            var reviewList = reviewService.GetAllReviews();
+            return Ok(reviewList);
+        }
+        public IHttpActionResult PostReview(ReviewCreate model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var service = CreateReviewService();
+            if (!service.CreateReview(model))
+            {
+                return InternalServerError();
+            }
+            return Ok();
+        }
+        public IHttpActionResult PutReview(ReviewEdit model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var service = CreateReviewService();
+            if (!service.UpdateReview(model))
+            {
+                return InternalServerError();
+            }
+            return Ok();
+        }
+        public IHttpActionResult DeleteReview(int id)
+        {
+            var service = CreateReviewService();
+            if (!service.DeleteReview(id))
+            {
+                return InternalServerError();
+            }
+            return Ok();
+        }
     }
 }
