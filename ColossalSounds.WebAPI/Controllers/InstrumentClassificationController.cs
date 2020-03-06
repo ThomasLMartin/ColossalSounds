@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using static ColossalSounds.Data.InstrumentClassification;
 
 namespace ColossalSounds.WebAPI.Controllers
 {
@@ -78,5 +79,33 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok();
         }
 
+        //Enum Method Retrun Categories 
+
+        [HttpGet]
+        [Route("categorytypes/all")]
+        public IHttpActionResult GetCategoryValues()
+        {
+            return Ok(DisplayEnum.GetValues<CategoryType>());
+        }
+
+        [HttpGet]
+        [Route("instrumenttypes/all")]
+        public IHttpActionResult GetInstrumentTypeNames()
+        {
+            return Ok(DisplayEnum.GetValues<InstrumentType>()); 
+        }
+
+        [HttpGet]
+        [Route("instrumenttypes/")]
+        public IHttpActionResult GetInstrumentByIndexNumber(int index)
+        {
+            if(DisplayEnum.GetValuesByIndex<InstrumentType>(index) == null)
+            {
+                return BadRequest("There is no instrument by that number");
+            }
+            return Ok(DisplayEnum.GetValuesByIndex<InstrumentType>(index));
+        }
+
     }
+
 }

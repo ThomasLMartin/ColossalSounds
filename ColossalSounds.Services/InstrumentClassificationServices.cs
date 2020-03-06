@@ -78,7 +78,7 @@ namespace ColossalSounds.Services
                 entity.TypeOfCategory = model.TypeOfCategory;
                 entity.TypeOfInstrument = model.TypeOfInstrument;
 
-                return ctx.SaveChanges() == 1; 
+                return ctx.SaveChanges() == 1;
             }
         }
 
@@ -93,8 +93,56 @@ namespace ColossalSounds.Services
 
                 ctx.Classifications.Remove(entity);
 
-                return ctx.SaveChanges() == 1; 
+                return ctx.SaveChanges() == 1;
             }
         }
+
+
     }
+    //Printing enum Value and Index 
+
+    public static class DisplayEnum
+    {
+        public static List<EnumContents> GetValues<T>()
+        {
+            List<EnumContents> contents = new List<EnumContents>();
+
+            foreach (var itemType in Enum.GetValues(typeof(T)))
+            {
+
+                contents.Add(new EnumContents()
+                {
+                    enumName = Enum.GetName(typeof(T), itemType),
+                    enumNumber = (int)itemType
+                });
+            }
+            return contents;
+        }
+
+        public static List<EnumContents> GetValuesByIndex<T>(int indexNumber)
+        {
+            List<EnumContents> contents = new List<EnumContents>();
+
+
+            for (int enumIndex = 1; enumIndex < Enum.GetValues(typeof(T)).Length; enumIndex++)
+            {
+                if (enumIndex == indexNumber)
+                {
+                    foreach (var itemType in Enum.GetValues(typeof(T)))
+                      
+                        if(itemType.GetHashCode() == indexNumber)
+                        contents.Add(new EnumContents()
+                        {
+                            enumName = Enum.GetName(typeof(T), itemType),
+                            enumNumber = (int)itemType,
+                        });
+
+                    return contents;
+                }
+            }
+            return null;
+        }
+
+    }
+
 }
