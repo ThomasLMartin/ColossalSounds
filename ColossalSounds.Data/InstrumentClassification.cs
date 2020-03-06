@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,9 +11,11 @@ namespace ColossalSounds.Data
 {
     public class InstrumentClassification
     {
-        public enum CategoryType {Brass, Woodwind, Percussion, Strings }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CategoryType {Brass = 1, Woodwind = 2, Percussion = 3, Strings = 4 }
 
-        public enum InstrumentType { Trumpet, Trombone, Alto_Saxophone, Tenor_Saxophone, Soprano_Saxophone, Baritone_Saxophone, Clarinet, Bass_Clarinet, Acoustic_Guitar, Electric_Guitar, Electric_Bass, StandUp_Bass, Flute, Piccolo, Snare_Drum, Drum_Kit, Piano, Keyboard, Obeo, Basson, French_Horn, Baritone, Tuba, Sousaphone, Bells, Marimba, Xylophone, Cymbol, }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum InstrumentType { Trumpet = 1 , Trombone = 2, Tuba = 3, French_Horn = 4, Baritone = 5, Sousaphone = 6, Soprano_Saxophone = 7, Alto_Saxophone = 8, Tenor_Saxophone = 9, Baritone_Saxophone = 10, Clarinet = 11, Bass_Clarinet = 12, Flute = 13, Piccolo = 14, Obeo = 15, Basson = 16, Acoustic_Guitar = 17, Electric_Guitar = 18, Electric_Bass = 19, StandUp_Bass = 20,  Snare_Drum = 21, Drum_Kit = 22, Piano = 23, Keyboard = 24, Bells = 25, Marimba = 26, Xylophone = 27, Cymbol = 28 }
 
 
         //Properties
@@ -34,5 +38,11 @@ namespace ColossalSounds.Data
             TypeOfInstrument = typeOfInstrument; 
         } 
 
+    }
+
+    public class EnumContents
+    {
+        public string enumName { get; set; }
+        public int enumNumber { get; set; }
     }
 }
