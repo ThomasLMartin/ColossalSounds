@@ -34,5 +34,8 @@ namespace ColossalSounds.Data
         [Required]
         public decimal Price { get; set; }
 
+        [Required]
+        public Guid OwnerId { get; set; }
+
     }
 }
