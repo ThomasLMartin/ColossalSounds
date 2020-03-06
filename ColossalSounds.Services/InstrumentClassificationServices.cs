@@ -129,17 +129,38 @@ namespace ColossalSounds.Services
                 if (enumIndex == indexNumber)
                 {
                     foreach (var itemType in Enum.GetValues(typeof(T)))
-                      
-                        if(itemType.GetHashCode() == indexNumber)
-                        contents.Add(new EnumContents()
-                        {
-                            enumName = Enum.GetName(typeof(T), itemType),
-                            enumNumber = (int)itemType,
-                        });
+
+                        if (itemType.GetHashCode() == indexNumber)
+                            contents.Add(new EnumContents()
+                            {
+                                enumName = Enum.GetName(typeof(T), itemType),
+                                enumNumber = (int)itemType,
+                            });
 
                     return contents;
                 }
             }
+            return null;
+        }
+
+        public static List<EnumContents> GetInputNumberByInstType<T>(string instrumentType)
+        {
+            List<EnumContents> contents = new List<EnumContents>();
+
+            foreach (var itemType in Enum.GetValues(typeof(T)))
+            {
+                if (itemType.ToString().ToLower() == instrumentType)
+                {
+                    contents.Add(new EnumContents()
+                    {
+                        enumName = Enum.GetName(typeof(T), itemType),
+                        enumNumber = (int)itemType,
+                    });
+
+                    return contents;
+                }
+            }
+
             return null;
         }
 

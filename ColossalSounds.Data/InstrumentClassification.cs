@@ -12,10 +12,10 @@ namespace ColossalSounds.Data
     public class InstrumentClassification
     {
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum CategoryType {Brass = 1, Woodwind = 2, Percussion = 3, Strings = 4 }
+        public enum CategoryType {brass = 1, woodwind = 2, percussion = 3, strings = 4 }
 
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum InstrumentType { Trumpet = 1 , Trombone = 2, Tuba = 3, French_Horn = 4, Baritone = 5, Sousaphone = 6, Soprano_Saxophone = 7, Alto_Saxophone = 8, Tenor_Saxophone = 9, Baritone_Saxophone = 10, Clarinet = 11, Bass_Clarinet = 12, Flute = 13, Piccolo = 14, Obeo = 15, Basson = 16, Acoustic_Guitar = 17, Electric_Guitar = 18, Electric_Bass = 19, StandUp_Bass = 20,  Snare_Drum = 21, Drum_Kit = 22, Piano = 23, Keyboard = 24, Bells = 25, Marimba = 26, Xylophone = 27, Cymbol = 28 }
+        public enum InstrumentType { trumpet = 1 , trombone = 2, tuba = 3, french_horn = 4, baritone = 5, sousaphone = 6, soprano_saxophone = 7, alto_saxophone = 8, tenor_saxophone = 9, baritone_saxophone = 10, clarinet = 11, bass_clarinet = 12, flute = 13, piccolo = 14, obeo = 15, basson = 16, acoustic_guitar = 17, electric_guitar = 18, electric_bass = 19, standup_bass = 20,  snare_drum = 21, drum_Kit = 22, piano = 23, keyboard = 24, bells = 25, marimba = 26, xylophone = 27, cymbol = 28 }
 
 
         //Properties

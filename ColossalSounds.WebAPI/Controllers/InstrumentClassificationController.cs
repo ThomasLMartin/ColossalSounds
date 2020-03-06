@@ -105,7 +105,17 @@ namespace ColossalSounds.WebAPI.Controllers
             }
             return Ok(DisplayEnum.GetValuesByIndex<InstrumentType>(index));
         }
-
+        
+        [HttpGet]
+        [Route("instrumentinputnumber/")]
+        public IHttpActionResult Get(string instrument)
+        {
+            if (DisplayEnum.GetInputNumberByInstType<InstrumentType>(instrument) == null)
+            {
+                return BadRequest("There is no instrument by that name");
+            }
+            return Ok(DisplayEnum.GetInputNumberByInstType<InstrumentType>(instrument));
+        }
     }
 
 }
