@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ColossalSounds.Data.InstrumentClassification;
 
 namespace ColossalSounds.Services
 {
@@ -61,6 +62,110 @@ namespace ColossalSounds.Services
                 return query.ToArray();
             }
         }
+
+        public IEnumerable<InstrumentListItem> GetInstrumentyByBrand(string Brand)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Instruments
+                        .Where(e => e.Brand.ToLower() == Brand.ToLower())
+                        .Select(
+                            e =>
+                                new InstrumentListItem
+                                {
+                                    InstrumentId = e.InstrumentId,
+                                    Description = e.Description,
+                                    Name = e.Name,
+                                    ModelName = e.ModelName,
+                                    Brand = e.Brand,
+                                    ExpLvl = e.ExpLvl,
+                                    Quantity = e.Quantity,
+                                    Price = e.Price,
+                                }
+                        );
+                return query.ToArray();
+            }
+        }
+
+        public IEnumerable<InstrumentListItem> GetInstrumentyByModelName(string modelName)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Instruments
+                        .Where(e => e.ModelName.ToLower() == modelName.ToLower())
+                        .Select(
+                            e =>
+                                new InstrumentListItem
+                                {
+                                    InstrumentId = e.InstrumentId,
+                                    Description = e.Description,
+                                    Name = e.Name,
+                                    ModelName = e.ModelName,
+                                    Brand = e.Brand,
+                                    ExpLvl = e.ExpLvl,
+                                    Quantity = e.Quantity,
+                                    Price = e.Price,
+                                }
+                        );
+                return query.ToArray();
+            }
+        }
+
+        //public IEnumerable<InstrumentClassification> GetInstrumentyByCategory(CategoryType TypeOfCategory)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var query =
+        //            ctx
+        //                .Instruments
+        //                .Where(e => e.CategoryType.ToLower() == Brand.ToLower())
+        //                .Select(
+        //                    e =>
+        //                        new InstrumentClassification
+        //                        {
+        //                            InstrumentId = e.InstrumentId,
+        //                            Description = e.Description,
+        //                            Name = e.Name,
+        //                            ModelName = e.ModelName,
+        //                            Brand = e.Brand,
+        //                            ExpLvl = e.ExpLvl,
+        //                            Quantity = e.Quantity,
+        //                            Price = e.Price,
+        //                        }
+        //                );
+        //        return query.ToArray();
+        //    }
+        //}
+
+        //public IEnumerable<InstrumentListItem> GetInstrumentyByBrand(string Brand)
+        //{
+        //    using (var ctx = new ApplicationDbContext())
+        //    {
+        //        var query =
+        //            ctx
+        //                .Instruments
+        //                .Where(e => e.Brand.ToLower() == Brand.ToLower())
+        //                .Select(
+        //                    e =>
+        //                        new InstrumentListItem
+        //                        {
+        //                            InstrumentId = e.InstrumentId,
+        //                            Description = e.Description,
+        //                            Name = e.Name,
+        //                            ModelName = e.ModelName,
+        //                            Brand = e.Brand,
+        //                            ExpLvl = e.ExpLvl,
+        //                            Quantity = e.Quantity,
+        //                            Price = e.Price,
+        //                        }
+        //                );
+        //        return query.ToArray();
+        //    }
+        //}
 
         public InstrumentDetail GetInstrumentById(int id)
         {
