@@ -200,13 +200,35 @@ namespace ColossalSounds.Services
                         .Single(e => e.InstrumentId == model.InstrumentId && e.OwnerId == _userId);
 
                 entity.InstrumentId = model.InstrumentId;
-                entity.Description = model.Description;
-                entity.Name = model.Name;
-                entity.ModelName = model.ModelName;
-                entity.Brand = model.Brand;
-                entity.ExpLvl = model.ExpLvl;
-                entity.Quantity = model.Quantity;
-                entity.Price = model.Price;
+
+                if (model.Description != null)
+                {
+                    entity.Description = model.Description;
+                }
+                else if (model.Name != null)
+                {
+                    entity.Name = model.Name;
+                }
+                else if (model.ModelName != null)
+                {
+                    entity.ModelName = model.ModelName;
+                }
+                else if (model.Brand != null)
+                {
+                    entity.Brand = model.Brand;
+                }
+                else if (model.ExpLvl != 0)
+                {
+                    entity.ExpLvl = model.ExpLvl;
+                }
+                else if (model.Quantity != 0)
+                {
+                    entity.Quantity = model.Quantity;
+                }
+                else if (model.Price != 0)
+                {
+                    entity.Price = model.Price;
+                }
                 return ctx.SaveChanges() == 1;
             }
         }
