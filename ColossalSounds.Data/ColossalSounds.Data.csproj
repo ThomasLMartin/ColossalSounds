@@ -88,6 +88,9 @@
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Instrument.cs" />
     <Compile Include="InstrumentClassification.cs" />
+    <Compile Include="Migrations\202003061642550_test123.cs" />
+    <Compile Include="Migrations\202003061642550_test123.Designer.cs">
+      <DependentUpon>202003061642550_test123.cs</DependentUpon>
     <Compile Include="Migrations\202003061751577_AddSeedDataTest.cs" />
     <Compile Include="Migrations\202003061751577_AddSeedDataTest.Designer.cs">
       <DependentUpon>202003061751577_AddSeedDataTest.cs</DependentUpon>
@@ -101,6 +104,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\202003061642550_test123.resx">
+      <DependentUpon>202003061642550_test123.cs</DependentUpon>
     <EmbeddedResource Include="Migrations\202003061751577_AddSeedDataTest.resx">
       <DependentUpon>202003061751577_AddSeedDataTest.cs</DependentUpon>
     </EmbeddedResource>
