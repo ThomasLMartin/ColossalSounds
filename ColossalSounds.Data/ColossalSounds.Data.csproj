@@ -91,6 +91,9 @@
     <Compile Include="Migrations\202003061642550_test123.cs" />
     <Compile Include="Migrations\202003061642550_test123.Designer.cs">
       <DependentUpon>202003061642550_test123.cs</DependentUpon>
+    <Compile Include="Migrations\202003061751577_AddSeedDataTest.cs" />
+    <Compile Include="Migrations\202003061751577_AddSeedDataTest.Designer.cs">
+      <DependentUpon>202003061751577_AddSeedDataTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,6 +106,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003061642550_test123.resx">
       <DependentUpon>202003061642550_test123.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003061751577_AddSeedDataTest.resx">
+      <DependentUpon>202003061751577_AddSeedDataTest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
