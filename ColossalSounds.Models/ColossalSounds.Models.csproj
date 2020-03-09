@@ -75,7 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ColossalSounds.Data\ColossalSounds.Data.csproj">
-      <Project>{1B75E231-2F48-4AA8-8FF3-FBAABFBDA249}</Project>
+      <Project>{1b75e231-2f48-4aa8-8ff3-fbaabfbda249}</Project>
       <Name>ColossalSounds.Data</Name>
     </ProjectReference>
   </ItemGroup>

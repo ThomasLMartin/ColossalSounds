@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ColossalSounds.Data.InstrumentClassification;
 
 namespace ColossalSounds.Services
 {
@@ -21,7 +22,7 @@ namespace ColossalSounds.Services
             var entity = new Accessory()
             {
                 Name = model.Name,
-                InstrumentAssociated = model.InstrumentAssociated,
+                InstrumentAssociated = (InstrumentType)model.InstrumentAssociatedId,
                 Brand = model.Brand,
                 Quantity = model.Quantity,
                 Price = model.Price,
@@ -88,7 +89,7 @@ namespace ColossalSounds.Services
 
                     entity.Id = model.Id;
                     entity.Name = model.Name;
-                    entity.InstrumentAssociated = model.InstrumentAssociated;
+                    entity.InstrumentAssociated = (InstrumentType)model.InstrumentAssociated;
                     entity.Brand = model.Brand;
                     entity.Quantity = model.Quantity;
                     entity.Price = model.Price;
