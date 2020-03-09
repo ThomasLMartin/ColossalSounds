@@ -15,12 +15,9 @@ namespace ColossalSounds.Data.Migrations
         protected override void Seed(ColossalSounds.Data.ApplicationDbContext context)
         {
 
+
             context.Users.AddOrUpdate(p => p.Email, new ApplicationUser { Email = "party@partytown.com", PasswordHash = "Test2!", UserName = "part@partytown.com" });
             
-            //context.Classifications.AddOrUpdate(p => p.Id, new InstrumentClassification { Id = 1, TypeOfCategory = InstrumentClassification.CategoryType.woodwind, TypeOfInstrument = InstrumentClassification.InstrumentType.clarinet });
-            
-            //context.Instruments.AddOrUpdate(p => p.Name, new Instrument { Brand = "Yamaha", ModelName = "YCL-221", ExpLvl = ExperienceLevel.Intermediate, Price = 599.99m, Quantity = 3, Description = "A great student-class bass clarinet.", Name = "Yamah YCL-221 Bass Clarinet", InstrumentId = 1 });
-
             context.Classifications.AddOrUpdate(
                 p => p.TypeOfCategory,
                 new InstrumentClassification { TypeOfCategory = InstrumentClassification.CategoryType.brass, TypeOfInstrument = InstrumentClassification.InstrumentType.trombone },
@@ -42,6 +39,9 @@ namespace ColossalSounds.Data.Migrations
                 );
 
 
+            context.Users.AddOrUpdate(p => p.Email, new ApplicationUser { Email = "joehallam13@gmail.com", PasswordHash = "Payton5353:)", UserName = "joehallam13@gmail.com" });
+            context.Classifications.AddOrUpdate(p => p.Id, new InstrumentClassification { Id = 1, TypeOfCategory = InstrumentClassification.CategoryType.woodwind, TypeOfInstrument = InstrumentClassification.InstrumentType.bass_clarinet });
+            context.Instruments.AddOrUpdate(p => p.Name, new Instrument { Brand = "Yamaha", ModelName = "YCL-221", ExpLvl = ExperienceLevel.Intermediate, Price = 599.99m, Quantity = 3, Description = "A great student-class bass clarinet.", Name = "Yamah YCL-221 Bass Clarinet", InstrumentId = 1 });
 
             //  This method will be called after migrating to the latest version.
 
@@ -55,6 +55,9 @@ namespace ColossalSounds.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            context.Users.AddOrUpdate(p => p.Email, new ApplicationUser { Email = "joehallam13@gmail.com", PasswordHash = "Payton5353:)", UserName = "joehallam13@gmail.com" });
+            context.Classifications.AddOrUpdate(p => p.Id, new InstrumentClassification { Id = 1, TypeOfCategory = InstrumentClassification.CategoryType.woodwind, TypeOfInstrument = InstrumentClassification.InstrumentType.bass_clarinet });
+            context.Instruments.AddOrUpdate(p => p.Name, new Instrument { Brand = "Yamaha", ModelName = "YCL-221", ExpLvl = ExperienceLevel.Intermediate, Price = 599.99m, Quantity = 3, Description = "A great student-class bass clarinet.", Name = "Yamah YCL-221 Bass Clarinet", InstrumentId = 1 });
         }
     }
 }
