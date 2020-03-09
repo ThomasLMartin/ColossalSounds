@@ -7,13 +7,13 @@ namespace ColossalSounds.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class initialTwo : IMigrationMetadata
+    public sealed partial class testMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initialTwo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(testMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003052000299_initialTwo"; }
+            get { return "202003061610016_testMigration"; }
         }
         
         string IMigrationMetadata.Source
