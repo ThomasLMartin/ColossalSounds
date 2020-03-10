@@ -18,8 +18,8 @@ namespace ColossalSounds.Data
         [Key]
         public int InstrumentId { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+       [Required]
+       public string Name { get; set; }
 
         [Required]
         public string ModelName { get; set; }

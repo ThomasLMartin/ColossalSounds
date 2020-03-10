@@ -16,7 +16,7 @@ namespace ColossalSounds.Data
         public string Name { get; set; }
 
         [Required]
-        public InstrumentClassification InstrumentAssociated { get; set; }
+        public InstrumentClassification.InstrumentType InstrumentAssociated { get; set; }
 
         [Required]
         public string Brand { get; set; }
