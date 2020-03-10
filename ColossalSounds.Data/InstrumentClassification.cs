@@ -22,7 +22,7 @@ namespace ColossalSounds.Data
         //Properties
 
         [Key]
-        public int Id { get; set; }
+        public int ClassificationId { get; set; }
 
         public CategoryType TypeOfCategory { get; set; }
 

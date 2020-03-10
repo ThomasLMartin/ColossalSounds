@@ -23,7 +23,7 @@ namespace ColossalSounds.Services
                 List<int> intList = new List<int>();
                 foreach (Rate rate in query)
                 {
-                    intList.Add(rate.StarRating);
+                    intList.Add((int)rate.StarRating);
                 }
                 double average = intList.Average();
                 return average;

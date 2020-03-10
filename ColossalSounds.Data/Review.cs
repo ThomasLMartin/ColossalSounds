@@ -19,7 +19,6 @@ namespace ColossalSounds.Data
         public string Content { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
-      
         
         [ForeignKey(nameof(Instrument))]
         public int? InstrumentId { get; set; }
