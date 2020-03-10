@@ -17,7 +17,7 @@ namespace ColossalSounds.Models.AccessoryModels
         public string Name { get; set; }
 
         [Display(Name = "Accessory for:")]
-        public InstrumentClassification InstrumentAssociated { get; set; }
+        public InstrumentClassification.InstrumentType InstrumentAssociated { get; set; }
 
         [Display(Name = "Brand")]
         public string Brand { get; set; }

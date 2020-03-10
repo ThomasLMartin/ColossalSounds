@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ColossalSounds.Data
+{
+    public class RatingClass
+    {
+        public class Rate
+        {
+            public double StarRating { get; set; }
+        }
+        public class Rating
+        {
+            List<Rate> _rates = new List<Rate>();
+        }
+
+    }
+
+}
