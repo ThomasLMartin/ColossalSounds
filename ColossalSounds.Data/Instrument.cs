@@ -3,9 +3,11 @@ using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ColossalSounds.Data.InstrumentClassification;
 
 namespace ColossalSounds.Data
 {
@@ -39,6 +41,10 @@ namespace ColossalSounds.Data
 
         [Required]
         public Guid OwnerId { get; set; }
+
+        [ForeignKey(nameof(InstrumentClassification))]
+        public int ClassificationId { get; set; }
+        public virtual InstrumentClassification InstrumentClassification { get; set; }
 
     }
 }

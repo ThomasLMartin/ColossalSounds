@@ -10,8 +10,6 @@ namespace ColossalSounds.Models.InstrumentModel
 {
     public class InstrumentCreate
     {
-        [Required]
-        public int InstrumentId { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -33,5 +31,7 @@ namespace ColossalSounds.Models.InstrumentModel
 
         [Required]
         public decimal Price { get; set; }
+
+        public int ClassificationId { get; set; }
     }
 }

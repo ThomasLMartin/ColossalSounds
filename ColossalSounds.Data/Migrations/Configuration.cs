@@ -25,8 +25,18 @@ namespace ColossalSounds.Data.Migrations
                 new InstrumentClassification { TypeOfCategory = InstrumentClassification.CategoryType.strings, TypeOfInstrument = InstrumentClassification.InstrumentType.guitar },
                 new InstrumentClassification { TypeOfCategory = InstrumentClassification.CategoryType.woodwind, TypeOfInstrument = InstrumentClassification.InstrumentType.oboe }
                 );
-
-
+            context.Accessories.AddOrUpdate(
+                p => p.Brand,
+                new Accessory { Brand = "Vandoren", Description = "Pack of 5 size 3 clarinet reeds", InstrumentAssociated = (InstrumentClassification.InstrumentType)8, Name = "CR103", Price = 26.99m, Quantity = 30 },
+                  new Accessory { Brand = "Ernie Ball", Description = "3 Pack Custom Gauge Nickel Wound Guitar Strings", InstrumentAssociated = (InstrumentClassification.InstrumentType)13, Name = "Regular Slinky", Price = 13.99m, Quantity = 50 },
+                    new Accessory { Brand = "Vic Firth", Description = "Classic Vic Firth Design with Wood Tips", InstrumentAssociated = (InstrumentClassification.InstrumentType)16, Name = "American Classic 5A", Price = 9.99m, Quantity = 25 }
+                    );
+            context.Reviews.AddOrUpdate(
+                new Review { InstrumentId = null, AccessoryId = 1, Content = "This set is great for beginner and intermediate players who prefer a little resistance in their reed to produce a sharper and clearer sound.", Title = "Great beginner reeds!", DateCreated = DateTime.Now, DateModified = DateTime.Now },
+                new Review { InstrumentId = null, AccessoryId = 1, Content = "Purchased this set for my son who has been playing for 3 years. These reeds were mush after 5 days of regular play.", Title = "Terrible Quality", DateCreated = DateTime.Now, DateModified = DateTime.Now },
+                new Review { InstrumentId = 4, AccessoryId = null, Content = "I have a lot of personal attachment with this guitar. It was the guitar I used with my first band, Good Kid. It's an excellent pick for anyone who knows what they're doing with a guitar", Title = "My Experience with the Fender Telecaster", DateCreated = DateTime.Now, DateModified = DateTime.Now },
+                new Review { InstrumentId = 4, AccessoryId = null, Content = "This guitar is amazing. I've been playing for well over 12 years, and this guitar is one of the finest I've ever played on. Highly recommended to any mid-level to professional player.", Title = "Fender TeleMASTER" , DateCreated = DateTime.Now, DateModified = DateTime.Now}
+                );
             context.Instruments.AddOrUpdate(
                 p => p.Name,
                 new Instrument { Name = "Tenor Trombone", ModelName = "I45 - 290", Brand = "CONN", ExpLvl = ExperienceLevel.Intermediate, Quantity = 4, Description = "An intermediate horn that plays like a professional", Price = 789.99m,  },
@@ -39,9 +49,11 @@ namespace ColossalSounds.Data.Migrations
                 );
 
 
-            //context.Users.AddOrUpdate(p => p.Email, new ApplicationUser { Email = "joehallam13@gmail.com", PasswordHash = "Payton5353:)", UserName = "joehallam13@gmail.com" });
-            //context.Classifications.AddOrUpdate(p => p.Id, new InstrumentClassification { Id = 1, TypeOfCategory = InstrumentClassification.CategoryType.woodwind, TypeOfInstrument = InstrumentClassification.InstrumentType.clarinet });
-            //context.Instruments.AddOrUpdate(p => p.Name, new Instrument { Brand = "Yamaha", ModelName = "YCL-221", ExpLvl = ExperienceLevel.Intermediate, Price = 599.99m, Quantity = 3, Description = "A great student-class bass clarinet.", Name = "Yamah YCL-221 Bass Clarinet", InstrumentId = 1 });
+
+            context.Users.AddOrUpdate(p => p.Email, new ApplicationUser { Email = "joehallam13@gmail.com", PasswordHash = "Payton5353:)", UserName = "joehallam13@gmail.com" });
+            context.Classifications.AddOrUpdate(p => p.Id, new InstrumentClassification { TypeOfCategory = InstrumentClassification.CategoryType.woodwind, TypeOfInstrument = InstrumentClassification.InstrumentType.clarinet });
+            context.Instruments.AddOrUpdate(p => p.Name, new Instrument { Brand = "Yamaha", ModelName = "YCL-221", ExpLvl = ExperienceLevel.Intermediate, Price = 599.99m, Quantity = 3, Description = "A great student-class bass clarinet.", Name = "Yamah YCL-221 Bass Clarinet", InstrumentId = 1 });
+
 
             //  This method will be called after migrating to the latest version.
 
@@ -54,8 +66,8 @@ namespace ColossalSounds.Data.Migrations
             //      new Person { FullName = "Brice Lambson" },
             //      new Person { FullName = "Rowan Miller" }
             //    );
-            
-       
+
+
         }
     }
 }

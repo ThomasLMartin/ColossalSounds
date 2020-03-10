@@ -16,7 +16,7 @@ namespace ColossalSounds.Data
         public string Name { get; set; }
 
         [Required]
-        public InstrumentClassification InstrumentAssociated { get; set; }
+        public InstrumentClassification.InstrumentType InstrumentAssociated { get; set; }
 
         [Required]
         public string Brand { get; set; }
@@ -30,18 +30,6 @@ namespace ColossalSounds.Data
         [Required]
         public string Description { get; set; }
 
-
-      /* Do we need this???
-       * public Accessory() { }
-        public Accessory(string id, string name, InstrumentType instrumentAssociated, string brand, int quantity, decimal price, string description)
-        {
-            Id = id;
-            Name = name;
-            InstrumentType = instrumentAssociated;
-            Brand = brand;
-            Quantity = quantity;
-            Price = price;
-            Description = description;
-        } */
+        public Rating Rating { get; set; }
     }
 }
