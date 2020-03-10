@@ -1,4 +1,5 @@
 ﻿using ColossalSounds.Data;
+using ColossalSounds.Models;
 using ColossalSounds.Models.InstrumentModel;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,6 @@ namespace ColossalSounds.Services
             var entity =
                 new Instrument()
                 {
-                    InstrumentId = model.InstrumentId,
                     Description = model.Description,
                     Name = model.Name,
                     ModelName = model.ModelName,
@@ -30,6 +30,7 @@ namespace ColossalSounds.Services
                     Quantity = model.Quantity,
                     Price = model.Price,
                     OwnerId = _userId,
+                    ClassificationId = model.ClassificationId,
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -115,57 +116,59 @@ namespace ColossalSounds.Services
             }
         }
 
-        //public IEnumerable<InstrumentClassification> GetInstrumentyByCategory(CategoryType TypeOfCategory)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var query =
-        //            ctx
-        //                .Instruments
-        //                .Where(e => e.CategoryType.ToLower() == Brand.ToLower())
-        //                .Select(
-        //                    e =>
-        //                        new InstrumentClassification
-        //                        {
-        //                            InstrumentId = e.InstrumentId,
-        //                            Description = e.Description,
-        //                            Name = e.Name,
-        //                            ModelName = e.ModelName,
-        //                            Brand = e.Brand,
-        //                            ExpLvl = e.ExpLvl,
-        //                            Quantity = e.Quantity,
-        //                            Price = e.Price,
-        //                        }
-        //                );
-        //        return query.ToArray();
-        //    }
-        //}
+        public IEnumerable<Instrument> GetInstrumentByCategoryType(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Instruments
+                        .Where(e => e.InstrumentClassification.TypeOfCategory == (CategoryType)id)
+                        .Select(
+                            e =>
+                                new Instrument
+                                {                                
+                                    ClassificationId = e.ClassificationId,
+                                    InstrumentId = e.InstrumentId,
+                                    Description = e.Description,
+                                    Name = e.Name,
+                                    ModelName = e.ModelName,
+                                    Brand = e.Brand,
+                                    ExpLvl = e.ExpLvl,
+                                    Quantity = e.Quantity,
+                                    Price = e.Price,
+                                }
+                        );
+                return query.ToArray();
+            }
+        }
 
-        //public IEnumerable<InstrumentListItem> GetInstrumentyByBrand(string Brand)
-        //{
-        //    using (var ctx = new ApplicationDbContext())
-        //    {
-        //        var query =
-        //            ctx
-        //                .Instruments
-        //                .Where(e => e.Brand.ToLower() == Brand.ToLower())
-        //                .Select(
-        //                    e =>
-        //                        new InstrumentListItem
-        //                        {
-        //                            InstrumentId = e.InstrumentId,
-        //                            Description = e.Description,
-        //                            Name = e.Name,
-        //                            ModelName = e.ModelName,
-        //                            Brand = e.Brand,
-        //                            ExpLvl = e.ExpLvl,
-        //                            Quantity = e.Quantity,
-        //                            Price = e.Price,
-        //                        }
-        //                );
-        //        return query.ToArray();
-        //    }
-        //}
+        public IEnumerable<Instrument> GetInstrumentByInstrumentType(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Instruments
+                        .Where(e => e.InstrumentClassification.TypeOfInstrument == (InstrumentType)id)
+                        .Select(
+                            e =>
+                                new Instrument
+                                {
+                                    ClassificationId = e.ClassificationId,
+                                    InstrumentId = e.InstrumentId,
+                                    Description = e.Description,
+                                    Name = e.Name,
+                                    ModelName = e.ModelName,
+                                    Brand = e.Brand,
+                                    ExpLvl = e.ExpLvl,
+                                    Quantity = e.Quantity,
+                                    Price = e.Price,
+                                }
+                        );
+                return query.ToArray();
+            }
+        }
 
         public InstrumentDetail GetInstrumentById(int id)
         {

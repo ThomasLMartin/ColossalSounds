@@ -3,6 +3,7 @@ using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,11 +24,12 @@ namespace ColossalSounds.Data
         [Key]
         public int Id { get; set; }
 
-        [Required]
         public CategoryType TypeOfCategory { get; set; }
 
-        [Required]
         public InstrumentType TypeOfInstrument { get; set; }
+
+        //public virtual ICollection<Instrument> Instruments { get; set; }
+
 
 
         public InstrumentClassification() { }
