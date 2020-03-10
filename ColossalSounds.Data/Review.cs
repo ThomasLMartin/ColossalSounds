@@ -20,9 +20,12 @@ namespace ColossalSounds.Data
         public string Content { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
+      
+        
         [ForeignKey(nameof(Instrument))]
         public int? InstrumentId { get; set; }
         public virtual Instrument Instrument { get; set; }
+        
         [ForeignKey(nameof(Accessory))]
         public int? AccessoryId { get; set; }
         public virtual Accessory Accessory { get; set; }

@@ -17,7 +17,7 @@ namespace ColossalSounds.WebAPI.Controllers
         public IHttpActionResult Get()
         {
             InstrumentService instrumentService = CreateInstrumentService();
-            var instrument = instrumentService.GetInstruemt();
+            var instrument = instrumentService.GetInstrument();
             return Ok(instrument);
         }
 
