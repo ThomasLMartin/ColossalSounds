@@ -39,7 +39,7 @@ namespace ColossalSounds.Services
             }
         }
 
-        public IEnumerable<InstrumentListItem> GetInstruemt()
+        public IEnumerable<InstrumentListItem> GetInstrument()
         {
             using (var ctx = new ApplicationDbContext())
             {
