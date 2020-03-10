@@ -18,7 +18,7 @@ namespace ColossalSounds.Models.AccessoryModels
         [Required]
         [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
         [MaxLength(100, ErrorMessage = "There are too many characters in this field.")]
-        public InstrumentClassification InstrumentAssociated { get; set; }
+        public InstrumentClassification.InstrumentType InstrumentAssociated { get; set; }
 
         [Required]
         [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
