@@ -29,7 +29,7 @@ namespace ColossalSounds.Data.Migrations
 
             context.Instruments.AddOrUpdate(
                 p => p.Name,
-                new Instrument { Name = "Tenor Trombone", ModelName = "I45 - 290", Brand = "CONN", ExpLvl = ExperienceLevel.Intermediate, Quantity = 4, Description = "An intermediate horn that plays like a professional", Price = 789.99m },
+                new Instrument { Name = "Tenor Trombone", ModelName = "I45 - 290", Brand = "CONN", ExpLvl = ExperienceLevel.Intermediate, Quantity = 4, Description = "An intermediate horn that plays like a professional", Price = 789.99m,  },
 
                 new Instrument { Name = "5 Piece Drum Kit", ModelName = "Careter Bueaford Deluxe Edition", Brand = "Gretch", ExpLvl = ExperienceLevel.Beginner, Quantity = 2, Description = "Everything you could ever want out of a drum kit. Includes: snare, three toms, bass drum, hit-hat, and while supplies last two crash cymbols.", Price = 1289.99m },
 
