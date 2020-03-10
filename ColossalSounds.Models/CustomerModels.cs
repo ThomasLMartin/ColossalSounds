@@ -24,7 +24,7 @@ namespace ColossalSounds.Models
         public string Zipcode { get; set; }
 
         [DataType(DataType.PhoneNumber)]
-        public int PhoneNumber { get; set; }
+        public double PhoneNumber { get; set; }
 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
@@ -41,7 +41,7 @@ namespace ColossalSounds.Models
         public string FullAddress { get; set; }
 
         [DataType(DataType.PhoneNumber)]
-        public int PhoneNumber { get; set; }
+        public double PhoneNumber { get; set; }
 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
@@ -62,7 +62,7 @@ namespace ColossalSounds.Models
         public string Zipcode { get; set; }
 
         [DataType(DataType.PhoneNumber)]
-        public int PhoneNumber { get; set; }
+        public double PhoneNumber { get; set; }
 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }

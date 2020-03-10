@@ -24,7 +24,7 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok(customer);
         }
 
-        public IHttpActionResult GetByPhoneNumber(int phoneNumber)
+        public IHttpActionResult GetByPhoneNumber(double phoneNumber)
         {
             CustomerServices customerService = CreateCustomerService();
             var customer = customerService.GetCustomerByPhoneNumber(phoneNumber);

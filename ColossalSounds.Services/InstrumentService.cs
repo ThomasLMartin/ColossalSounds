@@ -49,7 +49,7 @@ namespace ColossalSounds.Services
                             e =>
                                 new InstrumentListItem
                                 {
-                                    InstrumentId =      e.InstrumentId,
+                                    InstrumentId = e.InstrumentId,
                                     Description = e.Description,
                                     Name = e.Name,
                                     ModelName = e.ModelName,

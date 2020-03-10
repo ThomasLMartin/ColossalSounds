@@ -62,7 +62,7 @@ namespace ColossalSounds.Services
             }
         }
 
-        public CustomerContactDetail GetCustomerByPhoneNumber(int phoneNumber)
+        public CustomerContactDetail GetCustomerByPhoneNumber(double phoneNumber)
         {
             using (var ctx = new ApplicationDbContext())
             {

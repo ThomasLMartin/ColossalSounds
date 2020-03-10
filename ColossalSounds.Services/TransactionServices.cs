@@ -63,11 +63,8 @@ namespace ColossalSounds.Services
                     new TransactionDetail
                     {
                         TransactionId = entity.TransactionId,
-                        Id = entity.Id,
                         Accessory = entity.Accessory.Name,
-                        InstrumentId = entity.InstrumentId,
                         InstrumentName = entity.Instrument.Name,
-                        CustomerId = entity.CustomerId,
                         CustomerName = entity.Customer.FullName,
                         DateOfTransaction = entity.DateOfTransaction,
                         Total = entity.Total,
@@ -75,7 +72,7 @@ namespace ColossalSounds.Services
             }
         }
 
-        public bool UpdatedTransaction(TransactionEdit model)
+        public bool UpdateTransaction(TransactionEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {

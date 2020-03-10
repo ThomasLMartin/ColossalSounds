@@ -13,9 +13,9 @@ namespace ColossalSounds.Models
     {
         public int TransactionId { get; set; }
 
-        public int? Id { get; set; } //accessory Id
+       public int? Id { get; set; } //accessory Id
 
-        public int? InstrumentId { get; set; }
+       public int? InstrumentId { get; set; }
    
         public int CustomerId { get; set; }
 
@@ -28,7 +28,6 @@ namespace ColossalSounds.Models
 
         [DataType(DataType.Currency)]
         public decimal Total { get; set; }
-
 
     }
 
@@ -43,6 +42,8 @@ namespace ColossalSounds.Models
         public DateTime DateOfTransaction { get; set; }
 
         public int ProductCount { get; set; }
+
+        //Price? --> adding a function to adjust price to a sale or match pricing
     }
 
     public class TransactionListItem
@@ -61,15 +62,9 @@ namespace ColossalSounds.Models
     {
         public int TransactionId { get; set; }
 
-        public int? Id { get; set; } //accessory Id
-
         public string Accessory { get; set; } 
 
-        public int? InstrumentId { get; set; }
-
         public string InstrumentName { get; set; }
-
-        public int CustomerId { get; set; }
 
         public string CustomerName { get; set; }
 
