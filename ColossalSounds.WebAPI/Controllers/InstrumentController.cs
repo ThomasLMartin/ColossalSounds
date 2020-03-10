@@ -17,8 +17,8 @@ namespace ColossalSounds.WebAPI.Controllers
         public IHttpActionResult Get()
         {
             InstrumentService instrumentService = CreateInstrumentService();
-            var instrument = instrumentService.GetInstruemt();
-            return Ok(instrument);
+            var instruments = instrumentService.GetInstruemt();
+            return Ok(instruments);
         }
 
         public IHttpActionResult Post(InstrumentCreate instrument)
@@ -33,12 +33,28 @@ namespace ColossalSounds.WebAPI.Controllers
 
             return Ok(instrument);
         }
-
-        public IHttpActionResult Get(int id)
+        
+        public IHttpActionResult GetById(int id)
         {
             InstrumentService instrumentService = CreateInstrumentService();
             var instrument = instrumentService.GetInstrumentById(id);
             return Ok(instrument);
+        }
+
+        [Route("InstrumentFromCategoryType/")]
+        public IHttpActionResult GetByCategoryType(int id)
+        {
+            InstrumentService instrumentService = CreateInstrumentService();
+            var instruments = instrumentService.GetInstrumentByCategoryType(id);
+            return Ok(instruments);   
+        }
+
+        [Route("InstrumentFromInstrumentType/")]
+        public IHttpActionResult GetByInstrumentType(int id)
+        {
+            InstrumentService instrumentServices = CreateInstrumentService();
+            var instruments = instrumentServices.GetInstrumentByInstrumentType(id);
+            return Ok(instruments);
         }
 
         private InstrumentService CreateInstrumentService()
