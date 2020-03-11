@@ -95,7 +95,7 @@ namespace ColossalSounds.WebAPI.Controllers
         {
             var service = CreateInstrumentService();
 
-            if (!service.DeleteInsturment(id))
+            if (!service.DeleteInstrument(id))
                 return InternalServerError();
 
             return Ok();

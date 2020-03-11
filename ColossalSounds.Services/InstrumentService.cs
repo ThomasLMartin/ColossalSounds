@@ -119,7 +119,7 @@ namespace ColossalSounds.Services
             }
         }
 
-        public IEnumerable<Instrument> GetInstrumentByCategoryType(int id)
+        public IEnumerable<InstrumentListItem> GetInstrumentByCategoryType(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -129,9 +129,9 @@ namespace ColossalSounds.Services
                         .Where(e => e.InstrumentClassification.TypeOfCategory == (CategoryType)id)
                         .Select(
                             e =>
-                                new Instrument
+                                new InstrumentListItem
                                 {
-                                    ClassificationId = e.ClassificationId,
+
                                     InstrumentId = e.InstrumentId,
                                     Description = e.Description,
                                     Name = e.Name,
@@ -146,7 +146,7 @@ namespace ColossalSounds.Services
             }
         }
 
-        public IEnumerable<Instrument> GetInstrumentByInstrumentType(int id)
+        public IEnumerable<InstrumentListItem> GetInstrumentByInstrumentType(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -156,9 +156,8 @@ namespace ColossalSounds.Services
                         .Where(e => e.InstrumentClassification.TypeOfInstrument == (InstrumentType)id)
                         .Select(
                             e =>
-                                new Instrument
+                                new InstrumentListItem
                                 {
-                                    ClassificationId = e.ClassificationId,
                                     InstrumentId = e.InstrumentId,
                                     Description = e.Description,
                                     Name = e.Name,
@@ -308,17 +307,24 @@ namespace ColossalSounds.Services
             }
         }
 
-        public bool DeleteInsturment(int instrumentId)
+        public bool DeleteInstrument(int instrumentId)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                        .Instruments.Single(e => e.InstrumentId == instrumentId && e.OwnerId == _userId);
+                try
+                {
+                    var entity =
+                        ctx
+                            .Instruments.Single(e => e.InstrumentId == instrumentId && e.OwnerId == _userId);
+                    ctx.Instruments.Remove(entity);
 
-                ctx.Instruments.Remove(entity);
+                    return ctx.SaveChanges() == 1;
+                }
+                catch
+                {
+                    return false;
+                }
 
-                return ctx.SaveChanges() == 1;
             }
         }
     }

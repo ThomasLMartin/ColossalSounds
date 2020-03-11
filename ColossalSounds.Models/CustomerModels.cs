@@ -9,7 +9,6 @@ namespace ColossalSounds.Models
 {
     public class CustomerCreate
     {
-        public int CustomerId { get; set; }
 
         public string FirstName { get; set; }
 
@@ -28,8 +27,6 @@ namespace ColossalSounds.Models
 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-
-        public string FullAddress { get; set; }
     }
 
     public class CustomerContactDetail
