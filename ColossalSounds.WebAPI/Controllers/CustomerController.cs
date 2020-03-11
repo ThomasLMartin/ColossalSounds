@@ -24,11 +24,19 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok(customer);
         }
 
-        public IHttpActionResult GetByPhoneNumber(double phoneNumber)
+        public IHttpActionResult GetByPhoneNumber(string phoneNumber)
         {
-            CustomerServices customerService = CreateCustomerService();
-            var customer = customerService.GetCustomerByPhoneNumber(phoneNumber);
-            return Ok(customer);
+            var service = CreateCustomerService(); 
+          
+            var customers = service.GetCustomerByPhoneNumber(phoneNumber);
+            
+            if (customers.Count() == 0)
+            {
+                return Ok("There are no customers with that phone number");
+            }
+
+            return Ok(); 
+
         }
 
         public IHttpActionResult Post(CustomerCreate customer)
@@ -44,15 +52,17 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Put(CustomerEdit customer)
+        public IHttpActionResult Put(CustomerEdit customer, string phoneNumber)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateCustomerService();
 
-            if (!service.UpdateCustomerInfo(customer))
-                return InternalServerError();
+            if (service.UpdateCustomerInfo(customer, phoneNumber) == false)
+            {
+                return Ok("There is no customer with that phone number. Double check to make sure you inputed the correct number.");
+            }
 
             return Ok();
         }

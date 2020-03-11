@@ -16,7 +16,6 @@ namespace ColossalSounds.Services
             var entity =
                 new InstrumentClassification()
                 {
-                    ClassificationId = model.Id,
                     TypeOfCategory = model.TypeOfCategory,
                     TypeOfInstrument = model.TypeOfInstrument,
 
@@ -40,7 +39,7 @@ namespace ColossalSounds.Services
                         e =>
                         new InstrumentClassificationListItem
                         {
-                            Id = e.ClassificationId,
+                            ClassificationId = e.ClassificationId,
                             TypeOfCategory = e.TypeOfCategory,
                             TypeOfInstrument = e.TypeOfInstrument,
                         });
@@ -73,7 +72,7 @@ namespace ColossalSounds.Services
                 var entity =
                     ctx
                     .Classifications
-                    .Single(e => e.ClassificationId == model.Id);
+                    .Single(e => e.ClassificationId == model.ClassificationId);
 
                 entity.TypeOfCategory = model.TypeOfCategory;
                 entity.TypeOfInstrument = model.TypeOfInstrument;

@@ -79,10 +79,10 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok();
         }
 
-        //Enum Method Retrun Categories 
+        //Enum Method Return Categories 
 
         [HttpGet]
-        [Route("categorytypes/all")]
+        [Route("categorytype/all")]
         public IHttpActionResult GetCategoryValues()
         {
             return Ok(DisplayEnum.GetValues<CategoryType>());
@@ -92,20 +92,20 @@ namespace ColossalSounds.WebAPI.Controllers
         [Route("instrumenttypes/all")]
         public IHttpActionResult GetInstrumentTypeNames()
         {
-            return Ok(DisplayEnum.GetValues<InstrumentType>()); 
+            return Ok(DisplayEnum.GetValues<InstrumentType>());
         }
 
         [HttpGet]
         [Route("instrumenttypes/")]
         public IHttpActionResult GetInstrumentByIndexNumber(int index)
         {
-            if(DisplayEnum.GetValuesByIndex<InstrumentType>(index) == null)
+            if (DisplayEnum.GetValuesByIndex<InstrumentType>(index) == null)
             {
                 return BadRequest("There is no instrument by that number");
             }
             return Ok(DisplayEnum.GetValuesByIndex<InstrumentType>(index));
         }
-        
+
         [HttpGet]
         [Route("instrumentinputnumber/")]
         public IHttpActionResult Get(string instrument)
@@ -116,6 +116,7 @@ namespace ColossalSounds.WebAPI.Controllers
             }
             return Ok(DisplayEnum.GetInputNumberByInstType<InstrumentType>(instrument));
         }
+
     }
 
 }
