@@ -42,7 +42,7 @@ namespace ColossalSounds.Data
         }
 
         [DataType(DataType.PhoneNumber)]
-        public double PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }

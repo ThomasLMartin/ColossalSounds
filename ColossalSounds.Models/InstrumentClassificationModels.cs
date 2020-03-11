@@ -10,9 +10,7 @@ namespace ColossalSounds.Models
 {
     public class InstrumentClassificationCreate
     {
-        [Required]
-        public int Id { get; set; }
-
+      
         [Required]
         public CategoryType TypeOfCategory { get; set; }
 
@@ -31,7 +29,7 @@ namespace ColossalSounds.Models
 
     public class InstrumentClassificationEdit
     {
-        public int Id { get; set; }
+        public int ClassificationId { get; set; }
 
         public CategoryType TypeOfCategory { get; set; }
 
@@ -42,7 +40,7 @@ namespace ColossalSounds.Models
     public class InstrumentClassificationListItem
     
     {
-        public int Id { get; set; }
+        public int ClassificationId { get; set; }
 
         public CategoryType TypeOfCategory { get; set; }
 
