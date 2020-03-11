@@ -23,7 +23,9 @@ namespace ColossalSounds.Services
                 AuthorId = _userId,
                 Title = model.Title,
                 Content = model.Content,
-                DateCreated = DateTime.Now
+                DateCreated = DateTime.Now,
+                AccessoryId = model.AccessoryId,
+                InstrumentId = model.InstrumentId
             };
             using (var ctx = new ApplicationDbContext())
             {

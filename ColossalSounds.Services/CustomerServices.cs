@@ -22,7 +22,7 @@ namespace ColossalSounds.Services
             var entity =
                 new Customer()
                 {
-                    CustomerId = model.CustomerId,
+                    
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     StreetAddress = model.StreetAddress,
@@ -31,7 +31,7 @@ namespace ColossalSounds.Services
                     Zipcode = model.Zipcode,
                     PhoneNumber = model.PhoneNumber,
                     Email = model.Email,
-                    FullAddress = model.FullAddress,
+                    
                 };
 
             using (var ctx = new ApplicationDbContext())

@@ -11,24 +11,11 @@ namespace ColossalSounds.Models
 {
     public class TransactionCreate
     {
-        public int TransactionId { get; set; }
-
-       public int? Id { get; set; } //accessory Id
-
-       public int? InstrumentId { get; set; }
-   
         public int CustomerId { get; set; }
 
-        public DateTime DateOfTransaction { get; set; }
+        public int[] AllAccessories { get; set; }
 
-        public int ProductCount { get; set; }
-
-        [DataType(DataType.Currency)]
-        public decimal SubTotal { get; set; }
-
-        [DataType(DataType.Currency)]
-        public decimal Total { get; set; }
-
+        public int[] AllInstruments { get; set; }
     }
 
     public class TransactionEdit
@@ -51,6 +38,8 @@ namespace ColossalSounds.Models
     {
         public int TransactionId { get; set; }
 
+        public string ItemsBoughtString { get; set; }
+
         public DateTime DateOfTransaction { get; set; }
 
         [DataType(DataType.Currency)]
@@ -65,6 +54,8 @@ namespace ColossalSounds.Models
         public string Accessory { get; set; } 
 
         public string InstrumentName { get; set; }
+
+        public string ItemsBoughtString { get; set; }
 
         public string CustomerName { get; set; }
 

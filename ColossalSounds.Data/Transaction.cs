@@ -13,45 +13,19 @@ namespace ColossalSounds.Data
         [Key]
         public int TransactionId { get; set; }
 
-        
-        [ForeignKey(nameof(Accessory))]
-        public int? Id { get; set; }
-        public virtual Accessory Accessory { get; set; }
+        public List<string> ItemsBought { get; set; }
 
-      
-        [ForeignKey(nameof(Instrument))]
-        public int? InstrumentId { get; set; }
-        public virtual Instrument Instrument { get; set; }
-
-        
         [ForeignKey(nameof(Customer))]
         public int CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
 
-        
         public DateTime DateOfTransaction { get; set; }
 
 
         public int ProductCount { get; set; }
 
         [DataType(DataType.Currency)]
-        public decimal SubTotal 
-        {
-            get 
-            {
-                if (Instrument != null)
-                {
-                    return Instrument.Price * ProductCount;
-                }
-                else if (Accessory != null)
-                {
-                    return Accessory.Price * ProductCount;
-                }
-                else
-                    return 0;
-            }
-            set { }
-        }
+        public decimal SubTotal { get; set; }
 
         [DataType(DataType.Currency)]
         public decimal Total
