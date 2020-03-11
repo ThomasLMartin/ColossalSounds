@@ -37,7 +37,7 @@ namespace ColossalSounds.Services
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Customers.Add(entity);
-                return ctx.SaveChanges() == 1; 
+                return ctx.SaveChanges() == 1;
             }
         }
 
@@ -62,69 +62,106 @@ namespace ColossalSounds.Services
             }
         }
 
-        public CustomerContactDetail GetCustomerByPhoneNumber(double phoneNumber)
+        public IEnumerable<CustomerContactDetail> GetCustomerByPhoneNumber(string phoneNumber)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                    .Customers
-                    .Single(e => e.PhoneNumber == phoneNumber);
+                try
+                {
+                    var query =
+                        ctx
+                        .Customers
+                        .Where(e => e.PhoneNumber == phoneNumber);
 
-                    return
-                    new CustomerContactDetail
+                    List<CustomerContactDetail> listCCD = new List<CustomerContactDetail>();
+
+                    foreach (Customer c in query)
                     {
-                        FirstName = entity.FirstName,
-                        LastName = entity.LastName,
-                        FullAddress = entity.FullAddress,
-                        PhoneNumber = entity.PhoneNumber,
-                        Email = entity.Email,
-                    };
+                        CustomerContactDetail customerToReturn = new CustomerContactDetail();
+
+                        customerToReturn.FirstName = c.FirstName;
+                        customerToReturn.LastName = c.LastName;
+                        customerToReturn.FullAddress = c.FullAddress;
+                        customerToReturn.PhoneNumber = c.PhoneNumber;
+                        customerToReturn.Email = c.Email;
+
+                        listCCD.Add(customerToReturn);
+                    }
+                    return listCCD; 
+                }
+                catch
+                {
+                    var query = new List<CustomerContactDetail>();
+                      return query; 
+                }
             }
         }
 
-        public bool UpdateCustomerInfo(CustomerEdit model)
+        public bool UpdateCustomerInfo(CustomerEdit model, string phoneNumber)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
-                    ctx
-                    .Customers
-                    .Single(e => e.PhoneNumber == model.PhoneNumber);
+                try
+                {
+                    var entity =
+                        ctx
+                        .Customers
+                        .Single(e => e.PhoneNumber == phoneNumber);
+                    bool updating = true;
+                    int counter = 0;
+                    while (updating)
+                    {
+                        if (counter == 8)
+                        {
+                            updating = false;
+                            break;
+                        }
 
-                if (model.FirstName != null)
-                {
-                    entity.FirstName = model.FirstName;
+                        if (model.FirstName != null && counter == 0)
+                        {
+                            entity.FirstName = model.FirstName;
+                        }
+                        else if (model.LastName != null && counter == 1)
+                        {
+                            entity.LastName = model.LastName;
+                        }
+                        else if (model.StreetAddress != null && counter == 2)
+                        {
+                            entity.StreetAddress = model.StreetAddress;
+                        }
+                        else if (model.City != null && counter == 3)
+                        {
+                            entity.City = model.City;
+                        }
+                        else if (model.State != null && counter == 4)
+                        {
+                            entity.State = model.State;
+                        }
+                        else if (model.Zipcode != null && counter == 5)
+                        {
+                            entity.Zipcode = model.Zipcode;
+                        }
+                        else if (model.PhoneNumber != null && counter == 6)
+                        {
+                            entity.PhoneNumber = model.PhoneNumber;
+                        }
+                        else if (model.Email != null && counter == 7)
+                        {
+                            entity.Email = model.Email;
+                        }
+                        counter++;
+                    }
+                    return ctx.SaveChanges() == 1;
                 }
-                else if (model.LastName != null)
+                catch
                 {
-                    entity.LastName = model.LastName;
+                    var entity =
+                        ctx
+                        .Customers
+                        .Where(e => e.PhoneNumber == null);
+                    return false;
+
                 }
-                else if (model.StreetAddress != null)
-                {
-                    entity.StreetAddress = model.StreetAddress;
-                }
-                else if (model.City != null)
-                {
-                    entity.City = model.City;
-                }
-                else if (model.State != null)
-                {
-                    entity.State = model.State;
-                }
-                else if (model.Zipcode != null)
-                {
-                    entity.Zipcode = model.Zipcode;
-                }
-                else if (model.PhoneNumber != 0)
-                {
-                    entity.PhoneNumber = model.PhoneNumber;
-                }
-                else if (model.Email != null)
-                {
-                    entity.Email = model.Email;
-                }
-                return ctx.SaveChanges() == 1;
             }
         }
 
@@ -139,7 +176,7 @@ namespace ColossalSounds.Services
 
                 ctx.Customers.Remove(entity);
 
-                return ctx.SaveChanges() == 1; 
+                return ctx.SaveChanges() == 1;
             }
         }
 

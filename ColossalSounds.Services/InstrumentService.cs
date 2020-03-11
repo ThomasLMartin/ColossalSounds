@@ -58,6 +58,7 @@ namespace ColossalSounds.Services
                                     ExpLvl = e.ExpLvl,
                                     Quantity = e.Quantity,
                                     Price = e.Price,
+                                    ClassificationId = e.ClassificationId,
                                 }
                         );
                 return query.ToArray();
@@ -84,6 +85,7 @@ namespace ColossalSounds.Services
                                     ExpLvl = e.ExpLvl,
                                     Quantity = e.Quantity,
                                     Price = e.Price,
+                                    ClassificationId = e.ClassificationId,
                                 }
                         );
                 return query.ToArray();
@@ -110,6 +112,7 @@ namespace ColossalSounds.Services
                                     ExpLvl = e.ExpLvl,
                                     Quantity = e.Quantity,
                                     Price = e.Price,
+                                    ClassificationId = e.ClassificationId,
                                 }
                         );
                 return query.ToArray();
@@ -128,6 +131,7 @@ namespace ColossalSounds.Services
                             e =>
                                 new InstrumentListItem
                                 {
+
                                     InstrumentId = e.InstrumentId,
                                     Description = e.Description,
                                     Name = e.Name,
@@ -168,6 +172,61 @@ namespace ColossalSounds.Services
             }
         }
 
+        public IEnumerable<InstrumentListItem> GetInstrumentByExpLvl(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Instruments
+                        .Where(e => e.ExpLvl == (ExperienceLevel)id)
+                        .Select(
+                            e =>
+                                new InstrumentListItem
+                                {                                    
+                                    InstrumentId = e.InstrumentId,
+                                    Description = e.Description,
+                                    Name = e.Name,
+                                    ModelName = e.ModelName,
+                                    Brand = e.Brand,
+                                    ExpLvl = e.ExpLvl,
+                                    Quantity = e.Quantity,
+                                    Price = e.Price,
+                                    ClassificationId = e.ClassificationId,
+                                }
+                        );
+                return query.ToArray();
+            }
+        }
+
+        public IEnumerable<Instrument> GetInstrumentByInstrumentTypeAndExpLvl(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Instruments
+                        .Where(e => e.InstrumentClassification.TypeOfInstrument == (InstrumentType)id && e.ExpLvl == (ExperienceLevel)id)
+                        .Select(
+                            e =>
+                                new Instrument
+                                {
+                                    InstrumentId = e.InstrumentId,
+                                    Description = e.Description,
+                                    Name = e.Name,
+                                    ModelName = e.ModelName,
+                                    Brand = e.Brand,
+                                    ExpLvl = e.ExpLvl,
+                                    Quantity = e.Quantity,
+                                    Price = e.Price,
+                                    ClassificationId = e.ClassificationId,
+
+                                }
+                        );
+                return query.ToArray();
+            }
+        }
+
         public InstrumentDetail GetInstrumentById(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -201,34 +260,48 @@ namespace ColossalSounds.Services
                         .Single(e => e.InstrumentId == model.InstrumentId && e.OwnerId == _userId);
 
                 entity.InstrumentId = model.InstrumentId;
-
-                if (model.Description != null)
+                bool updating = true;
+                int counter = 0;
+                while (updating)
                 {
-                    entity.Description = model.Description;
-                }
-                else if (model.Name != null)
-                {
-                    entity.Name = model.Name;
-                }
-                else if (model.ModelName != null)
-                {
-                    entity.ModelName = model.ModelName;
-                }
-                else if (model.Brand != null)
-                {
-                    entity.Brand = model.Brand;
-                }
-                else if (model.ExpLvl != 0)
-                {
-                    entity.ExpLvl = model.ExpLvl;
-                }
-                else if (model.Quantity != 0)
-                {
-                    entity.Quantity = model.Quantity;
-                }
-                else if (model.Price != 0)
-                {
-                    entity.Price = model.Price;
+                    if (counter == 8)
+                    {
+                        updating = false;
+                        break; 
+                    }
+                    if (model.Description != null && counter == 0)
+                    {
+                        entity.Description = model.Description;
+                    }
+                    else if (model.Name != null & counter == 1)
+                    {
+                        entity.Name = model.Name;
+                    }
+                    else if (model.ModelName != null && counter == 2)
+                    {
+                        entity.ModelName = model.ModelName;
+                    }
+                    else if (model.Brand != null && counter == 3)
+                    {
+                        entity.Brand = model.Brand;
+                    }
+                    else if (model.ExpLvl != 0 && counter == 4)
+                    {
+                        entity.ExpLvl = model.ExpLvl;
+                    }
+                    else if (model.Quantity != 0 && counter == 5)
+                    {
+                        entity.Quantity = model.Quantity;
+                    }
+                    else if (model.Price != 0 && counter == 6)
+                    {
+                        entity.Price = model.Price;
+                    }
+                    else if (model.ClassificationId != 0 && counter == 7)
+                    {
+                        entity.ClassificationId = model.ClassificationId;
+                    }
+                    counter++;
                 }
                 return ctx.SaveChanges() == 1;
             }

@@ -57,6 +57,20 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok(instruments);
         }
 
+        public IHttpActionResult GetByExpLvl(int id)
+        {
+            InstrumentService instrumentService = CreateInstrumentService();
+            var instruments = instrumentService.GetInstrumentByExpLvl(id);
+            return Ok(instruments);
+        }
+
+        public IHttpActionResult GetByInstrumentTypeAndExpLvl(int id)
+        {
+            InstrumentService instrumentService = CreateInstrumentService();
+            var instruments = instrumentService.GetInstrumentByInstrumentTypeAndExpLvl(id);
+            return Ok(instruments);
+        }
+
         private InstrumentService CreateInstrumentService()
         {
             var instrumentId = Guid.Parse(User.Identity.GetUserId());
