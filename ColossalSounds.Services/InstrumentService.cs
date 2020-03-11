@@ -58,6 +58,7 @@ namespace ColossalSounds.Services
                                     ExpLvl = e.ExpLvl,
                                     Quantity = e.Quantity,
                                     Price = e.Price,
+                                    ClassificationId = e.ClassificationId,
                                 }
                         );
                 return query.ToArray();
@@ -84,6 +85,7 @@ namespace ColossalSounds.Services
                                     ExpLvl = e.ExpLvl,
                                     Quantity = e.Quantity,
                                     Price = e.Price,
+                                    ClassificationId = e.ClassificationId,
                                 }
                         );
                 return query.ToArray();
@@ -110,6 +112,7 @@ namespace ColossalSounds.Services
                                     ExpLvl = e.ExpLvl,
                                     Quantity = e.Quantity,
                                     Price = e.Price,
+                                    ClassificationId = e.ClassificationId,
                                 }
                         );
                 return query.ToArray();
@@ -164,6 +167,61 @@ namespace ColossalSounds.Services
                                     ExpLvl = e.ExpLvl,
                                     Quantity = e.Quantity,
                                     Price = e.Price,
+                                }
+                        );
+                return query.ToArray();
+            }
+        }
+
+        public IEnumerable<InstrumentListItem> GetInstrumentByExpLvl(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Instruments
+                        .Where(e => e.ExpLvl == (ExperienceLevel)id)
+                        .Select(
+                            e =>
+                                new InstrumentListItem
+                                {                                    
+                                    InstrumentId = e.InstrumentId,
+                                    Description = e.Description,
+                                    Name = e.Name,
+                                    ModelName = e.ModelName,
+                                    Brand = e.Brand,
+                                    ExpLvl = e.ExpLvl,
+                                    Quantity = e.Quantity,
+                                    Price = e.Price,
+                                    ClassificationId = e.ClassificationId,
+                                }
+                        );
+                return query.ToArray();
+            }
+        }
+
+        public IEnumerable<Instrument> GetInstrumentByInstrumentTypeAndExpLvl(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                        .Instruments
+                        .Where(e => e.InstrumentClassification.TypeOfInstrument == (InstrumentType)id && e.ExpLvl == (ExperienceLevel)id)
+                        .Select(
+                            e =>
+                                new Instrument
+                                {
+                                    InstrumentId = e.InstrumentId,
+                                    Description = e.Description,
+                                    Name = e.Name,
+                                    ModelName = e.ModelName,
+                                    Brand = e.Brand,
+                                    ExpLvl = e.ExpLvl,
+                                    Quantity = e.Quantity,
+                                    Price = e.Price,
+                                    ClassificationId = e.ClassificationId,
+
                                 }
                         );
                 return query.ToArray();
