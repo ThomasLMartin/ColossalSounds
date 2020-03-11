@@ -12,14 +12,14 @@ using static ColossalSounds.Data.InstrumentClassification;
 namespace ColossalSounds.Data
 {
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum ExperienceLevel {Beginner = 1, Intermediate = 2, Expert = 3}
+    public enum ExperienceLevel { Beginner = 1, Intermediate = 2, Expert = 3 }
     public class Instrument
     {
         [Key]
         public int InstrumentId { get; set; }
 
-       [Required]
-       public string Name { get; set; }
+        [Required]
+        public string Name { get; set; }
 
         [Required]
         public string ModelName { get; set; }
