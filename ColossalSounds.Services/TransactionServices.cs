@@ -15,6 +15,10 @@ namespace ColossalSounds.Services
             using (var ctx = new ApplicationDbContext())
             {
                 var entity = new Transaction();
+                //Goes through the list of inputted integers and 
+                //a. adds the name of the instrument/accessory associated to a list of integers (like a receipt prints out the names of items purchased
+                //b. adds the price of the item to the subtotal
+                //c. increases the product count of the transaction by 1. 
                 foreach (int number in model.AllInstruments)
                 {
                     entity.ItemsBought.Add(ctx.Instruments.Where(e => e.InstrumentId == number).Single().Name);
