@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
-using static ColossalSounds.Data.RatingClass;
+using static ColossalSounds.Data.ProductRating;
 
 namespace ColossalSounds.Data
 {
@@ -43,7 +43,7 @@ namespace ColossalSounds.Data
         public DbSet<Transaction> Transactions { get; set; }
 
 
-        public DbSet<Rate> Ratings { get; set; }
+        public DbSet<ProductRating> Ratings { get; set; }
         
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

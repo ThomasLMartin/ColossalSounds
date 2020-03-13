@@ -20,7 +20,6 @@ namespace ColossalSounds.WebAPI.Controllers
         }
 
         //GET
-
          public IHttpActionResult GetAll()
         {
             InstrumentClassificationServices classificationService = CreateClassificationService();
