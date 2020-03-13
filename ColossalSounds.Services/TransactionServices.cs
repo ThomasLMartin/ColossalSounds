@@ -27,8 +27,8 @@ namespace ColossalSounds.Services
                 }
                 foreach (int number in model.AllAccessories)
                 {
-                    entity.ItemsBought.Add(ctx.Accessories.Where(e => e.Id == number).Single().Name);
-                    entity.SubTotal = entity.SubTotal + ctx.Accessories.Where(e => e.Id == number).Single().Price;
+                    entity.ItemsBought.Add(ctx.Accessories.Where(e => e.AccessoryId == number).Single().Name);
+                    entity.SubTotal = entity.SubTotal + ctx.Accessories.Where(e => e.AccessoryId == number).Single().Price;
                     entity.ProductCount = entity.ProductCount + 1;
                 }
                 entity.CustomerId = model.CustomerId;

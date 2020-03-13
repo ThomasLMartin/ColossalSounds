@@ -11,7 +11,7 @@ namespace ColossalSounds.Models.AccessoryModels
 {
     public class AccessoryDetail
     {
-        public int Id { get; set; }
+        public int AccessoryId { get; set; }
 
         [Display(Name = "Accessory name:")]
         public string Name { get; set; }

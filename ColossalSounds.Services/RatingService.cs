@@ -14,9 +14,23 @@ namespace ColossalSounds.Services
     //return the average of the array as the rating for the item
     public class RatingService
     {
+        //Alright gents... here we go... 
 
-        public bool RateAProduct(ProductRating model)
+        //A few notes. First, we made was in the data assembly --> Ratings Class there were two classes inside of another class. We removed the class the was housing the two classes and commented out the one with the list in it. 
+
+        //Second, We also updated some names for clarification and added two Foreign Keys so that the ratings get connected to the specific instrument or product. 
+
+        //Third, I also changes the ID in accessory data table to "AccessoryId" for clarification
+
+        //Fourth, we created an "AverageRating" property in both Instrument and Accessory data models
+
+
+        //Directly below is the create a Product rating that takes in the values passed in through Postman and then calls in the AverageRating method (directly below) which creates the average and then saves it. Jess helped us so this a hybrid of the one he shared and the average method that was originally in here. 
+        
+        //I'll note out steps
+        public bool CreatingProductRating(RatingCreate model)
         {
+            // Here is like all our other create functins just passing in the model
             var entity =
                 new ProductRating()
                 {
@@ -27,46 +41,63 @@ namespace ColossalSounds.Services
 
             using (var ctx = new ApplicationDbContext())
             {
+                //Opened the Dbcontext and then "entity" passes in the model directly above
                 ctx.Ratings.Add(entity);
-                ctx.SaveChanges();
 
-                RatingService productRating = new RatingService();
-                productRating.AverageRating(model.InstrumentId, model.AccessoryId);
+                //This saves the changes the "entity" model passes into the Ratings Dbcontext before we send it to the AverageRating method. Jess wasn't sure why this step was needed, but I think it adds it to the table.
+                ctx.SaveChanges(); 
+
+                //This send the info to the averaging method below
+                AverageRating(model.InstrumentId, model.AccessoryId);
+
+                //It's odd everything actually runs through the Averaging method before it hits this step
                 return ctx.SaveChanges() == 0;
             }
         }
 
 
-        public bool AverageRating(int instrumentId, int accessoryId)
+        //Notice the int? --> I wanted to be able to only have write out this method once for both instrument and accesory ratings. Right now it is set up to really only handle rating one or the other, at least to my knowledge. 
+        //So I had to make them nullable and took me a while to figure out that I had to notate these as "int?" as well! 
+        public bool AverageRating(int? instrumentId, int? accessoryId)
         {
-            //double avgRate = 0;
             using (var ctx = new ApplicationDbContext())
             {
-                var productRatingList = ctx.Ratings.Where(e => e.InstrumentId == e.InstrumentId || e.AccessoryId == e.AccessoryId).ToList();
-                
-                List<int> intList = new List<int>();
 
-                foreach (ProductRating rate in productRatingList)
+                if (instrumentId != null)
                 {
-                    intList.Add((int)rate.StarRating); //avgRate += rate.StarRating;
+                    //This adds everything to a list. By everything. I mean everything in the RatingClass database table 
+                    var productRatingList = ctx.Ratings.Where(e => e.InstrumentId == instrumentId).ToList();
+
+                    List<int> intList = new List<int>();
+
+                    //This parses through the list and pulls out all the ratings and adds it to the list creaed above 
+                    foreach (ProductRating rate in productRatingList)
+                    {
+                        intList.Add((int)rate.StarRating); 
+                    }
+
+                    double averageRating = intList.Average();  
+
+                    //This calls in the Instrument database and then places the average into the "AverageRating" spot in the Instrument table, which is then saved to the database in the step after the else if block
+                    var instrumentRating = ctx.Instruments.Single(e => e.InstrumentId == instrumentId);
+                    instrumentRating.AverageRating = averageRating; 
                 }
+                else if (accessoryId != null)
+                {
+                    var accessoryRatingList = ctx.Ratings.Where(e => e.AccessoryId == accessoryId).ToList();
 
-                double averageRating = intList.Average();  //avgRate = avgRate / productRatingList.Count();
+                    List<int> intList = new List<int>();
 
-                Instrument instrumentRating = new Instrument();
-                Accessory accessoryRating = new Accessory();
+                    foreach (ProductRating rate in accessoryRatingList)
+                    {
+                        intList.Add((int)rate.StarRating); 
+                    }
 
-                
-                ctx.Ratings.Where(e => e.InstrumentId == e.InstrumentId);
-                
-                instrumentRating = ctx.Instruments.Single(e => e.InstrumentId == e.InstrumentId);
-                instrumentRating.AverageRating = averageRating; //.ToString().Substring(0, 3);
+                    double averageRating = intList.Average();  
 
-                ctx.Ratings.Where(e => e.AccessoryId == e.AccessoryId);
-                
-                accessoryRating = ctx.Accessories.Single(e => e.Id == e.Id);
-                accessoryRating.AverageRating = averageRating;
-
+                    var accessoryRating = ctx.Accessories.Single(e => e.AccessoryId == accessoryId);
+                    accessoryRating.AverageRating = averageRating;
+                }
 
                 return ctx.SaveChanges() == 1;
             }
@@ -117,7 +148,7 @@ namespace ColossalSounds.Services
                 var entity =
                     ctx
                     .Ratings
-                    .Single(e => e.Id == model.Id);
+                    .Single(e => e.RatingId == model.RatingId);
 
                 entity.StarRating = model.StarRating;
 
@@ -133,7 +164,7 @@ namespace ColossalSounds.Services
                 {
                     var entity =
                         ctx
-                            .Ratings.Single(e => e.Id == ratingId);
+                            .Ratings.Single(e => e.RatingId == ratingId);
                     ctx.Ratings.Remove(entity);
                     return ctx.SaveChanges() == 1;
                 }

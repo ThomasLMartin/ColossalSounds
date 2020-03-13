@@ -8,11 +8,11 @@ namespace ColossalSounds.Models
 {
     public class RatingCreate
     {
-        public int InstrumentId { get; set; }
+        public int? InstrumentId { get; set; }
 
         public int? AccessoryId { get; set; }
 
-        public int? StarRating { get; set; }
+        public int StarRating { get; set; }
     }
 
     public class RatingListItem
@@ -27,7 +27,7 @@ namespace ColossalSounds.Models
 
     public class RatingEdit
     {
-        public int Id { get; set; }
+        public int RatingId { get; set; }
         public int StarRating { get; set; }
     }
 }

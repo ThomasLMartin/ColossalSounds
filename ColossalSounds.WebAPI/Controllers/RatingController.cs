@@ -26,6 +26,18 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok(starRating);
         }
 
+        public IHttpActionResult Post(RatingCreate rating)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateRatingService();
+
+            if (!service.CreatingProductRating(rating))
+                return InternalServerError();
+
+            return Ok(); 
+        }
 
         public IHttpActionResult Put(RatingEdit rating)
         {

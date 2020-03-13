@@ -11,7 +11,7 @@ namespace ColossalSounds.Data
     public class Accessory
     {
         [Key]
-        public int Id { get; set; }
+        public int AccessoryId { get; set; }
 
         [Required]
         public string Name { get; set; }

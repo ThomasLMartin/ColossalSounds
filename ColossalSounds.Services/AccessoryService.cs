@@ -46,7 +46,7 @@ namespace ColossalSounds.Services
                     .Select(
                         e => new AccessoryListItem
                         {
-                            Id = e.Id,
+                            AccessoryId = e.AccessoryId,
                             Name = e.Name,
                             InstrumentAssociated = e.InstrumentAssociated,
                             Brand = e.Brand,
@@ -65,7 +65,7 @@ namespace ColossalSounds.Services
                 var entity =
                     ctx
                         .Accessories
-                        .Single(e => e.Id == id);
+                        .Single(e => e.AccessoryId == id);
                 return
                     new AccessoryDetail
                     {
@@ -85,9 +85,9 @@ namespace ColossalSounds.Services
                     var entity =
                         ctx
                         .Accessories
-                        .Single(e => e.Id == model.Id);
+                        .Single(e => e.AccessoryId == model.AccessoryId);
 
-                    entity.Id = model.Id;
+                    entity.AccessoryId = model.AccessoryId;
                     entity.Name = model.Name;
                     entity.InstrumentAssociated = (InstrumentType)model.InstrumentAssociated;
                     entity.Brand = model.Brand;
@@ -103,7 +103,7 @@ namespace ColossalSounds.Services
             {
                 using (var ctx = new ApplicationDbContext())
                 {
-                    var entity = ctx.Accessories.Single(e => e.Id == accessoryId);
+                    var entity = ctx.Accessories.Single(e => e.AccessoryId == accessoryId);
                     ctx.Accessories.Remove(entity);
                     return ctx.SaveChanges() == 1;
                 }
