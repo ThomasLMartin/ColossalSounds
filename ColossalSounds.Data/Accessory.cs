@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static ColossalSounds.Data.RatingClass;
+using static ColossalSounds.Data.ProductRating;
 
 namespace ColossalSounds.Data
 {
     public class Accessory
     {
         [Key]
-        public int Id { get; set; }
+        public int AccessoryId { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -31,6 +31,6 @@ namespace ColossalSounds.Data
         [Required]
         public string Description { get; set; }
 
-        public Rate Rating { get; set; }
+        public double AverageRating { get; set; }
     }
 }

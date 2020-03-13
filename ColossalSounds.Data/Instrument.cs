@@ -46,5 +46,7 @@ namespace ColossalSounds.Data
         public int ClassificationId { get; set; }
         public virtual InstrumentClassification InstrumentClassification { get; set; }
 
+        public double AverageRating { get; set; }
+
     }
 }

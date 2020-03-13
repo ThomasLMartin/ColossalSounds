@@ -21,14 +21,14 @@ namespace ColossalSounds.Services
                 //c. increases the product count of the transaction by 1. 
                 foreach (int number in model.AllInstruments)
                 {
-                    entity.ItemsBought.Add(ctx.Instruments.Where(e => e.InstrumentId == number).Single().Name);
+                    entity.ItemsBought.Add(ctx.Instruments.Where(e => e.InstrumentId == number).Single().Name); //not set to an intance of an object 
                     entity.SubTotal = entity.SubTotal + ctx.Instruments.Where(e => e.InstrumentId == number).Single().Price;
                     entity.ProductCount = entity.ProductCount + 1;
                 }
                 foreach (int number in model.AllAccessories)
                 {
-                    entity.ItemsBought.Add(ctx.Accessories.Where(e => e.Id == number).Single().Name);
-                    entity.SubTotal = entity.SubTotal + ctx.Accessories.Where(e => e.Id == number).Single().Price;
+                    entity.ItemsBought.Add(ctx.Accessories.Where(e => e.AccessoryId == number).Single().Name);
+                    entity.SubTotal = entity.SubTotal + ctx.Accessories.Where(e => e.AccessoryId == number).Single().Price;
                     entity.ProductCount = entity.ProductCount + 1;
                 }
                 entity.CustomerId = model.CustomerId;
