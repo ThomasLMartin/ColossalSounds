@@ -21,7 +21,6 @@ namespace ColossalSounds.Data
 
         public DateTime DateOfTransaction { get; set; }
 
-
         public int ProductCount { get; set; }
 
         [DataType(DataType.Currency)]

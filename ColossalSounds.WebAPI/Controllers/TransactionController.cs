@@ -43,10 +43,13 @@ namespace ColossalSounds.WebAPI.Controllers
 
             var service = CreateTransactionService();
 
-            if (!service.CreateTransaction(transaction))
+            if (service.CreateTransaction(transaction) == 1)
+            {
+            return Ok();
+
+            }
                 return InternalServerError();
 
-            return Ok();
         }
 
         public IHttpActionResult Put(TransactionEdit transaction)

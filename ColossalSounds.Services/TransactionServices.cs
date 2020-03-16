@@ -10,31 +10,46 @@ namespace ColossalSounds.Services
 {
     public class TransactionServices
     {
-        public bool CreateTransaction(TransactionCreate model)
+        public int CreateTransaction(TransactionCreate model)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity = new Transaction();
-                //Goes through the list of inputted integers and 
-                //a. adds the name of the instrument/accessory associated to a list of integers (like a receipt prints out the names of items purchased
-                //b. adds the price of the item to the subtotal
-                //c. increases the product count of the transaction by 1. 
-                foreach (int number in model.AllInstruments)
+
+                using (var ctx = new ApplicationDbContext())
                 {
-                    entity.ItemsBought.Add(ctx.Instruments.Where(e => e.InstrumentId == number).Single().Name); //not set to an intance of an object 
-                    entity.SubTotal = entity.SubTotal + ctx.Instruments.Where(e => e.InstrumentId == number).Single().Price;
-                    entity.ProductCount = entity.ProductCount + 1;
+
+
+                    var entity = new Transaction();
+                    //Goes through the list of inputted integers and 
+                    //a. adds the name of the instrument/accessory associated to a list of integers (like a receipt prints out the names of items purchased
+                    //b. adds the price of the item to the subtotal
+                    //c. increases the product count of the transaction by 1. 
+                    List<string> itemList = new List<string>();
+                    foreach (int number in model.AllInstruments)
+                    {
+                        Instrument example = ctx.Instruments.Where(e => e.InstrumentId == number).Single();
+                        itemList.Add(example.Name);
+                        entity.SubTotal = entity.SubTotal + ctx.Instruments.Where(e => e.InstrumentId == number).Single().Price;
+                        entity.ProductCount = entity.ProductCount + 1;
+                    }
+                    foreach (int number in model.AllAccessories)
+                    {
+                        Accessory accessory = ctx.Accessories.Where(e => e.AccessoryId == number).Single();
+                        itemList.Add(accessory.Name);
+                        entity.SubTotal = entity.SubTotal + ctx.Accessories.Where(e => e.AccessoryId == number).Single().Price;
+                        entity.ProductCount = entity.ProductCount + 1;
+                    }
+                    entity.ItemsBought = itemList;
+                    entity.CustomerId = model.CustomerId;
+                    entity.DateOfTransaction = DateTime.Now;
+                    ctx.Transactions.Add(entity);
+                    return ctx.SaveChanges();
                 }
-                foreach (int number in model.AllAccessories)
-                {
-                    entity.ItemsBought.Add(ctx.Accessories.Where(e => e.AccessoryId == number).Single().Name);
-                    entity.SubTotal = entity.SubTotal + ctx.Accessories.Where(e => e.AccessoryId == number).Single().Price;
-                    entity.ProductCount = entity.ProductCount + 1;
-                }
-                entity.CustomerId = model.CustomerId;
-                entity.DateOfTransaction = DateTime.Now;
-                ctx.Transactions.Add(entity);
-                return ctx.SaveChanges() == 1;
+
+            }
+            catch
+            {
+                return 500;
             }
         }
 
@@ -50,7 +65,7 @@ namespace ColossalSounds.Services
                         new TransactionListItem
                         {
                             TransactionId = e.TransactionId,
-                            ItemsBoughtString = string.Join(" ", e.ItemsBought),
+                            ItemsBoughtString = string.Join(", ", e.ItemsBought),
                             DateOfTransaction = e.DateOfTransaction,
                             Total = e.Total,
                         });
@@ -70,7 +85,7 @@ namespace ColossalSounds.Services
                 return
                     new TransactionDetail
                     {
-                        ItemsBoughtString = string.Join(" ", entity.ItemsBought),
+                        ItemsBoughtString = string.Join(", ", entity.ItemsBought),
                         TransactionId = entity.TransactionId,
                         CustomerName = entity.Customer.FullName,
                         DateOfTransaction = entity.DateOfTransaction,
@@ -88,7 +103,7 @@ namespace ColossalSounds.Services
                     .Transactions
                     .Single(e => e.TransactionId == model.Id);
 
-                
+
                 entity.CustomerId = model.CustomerId;
                 entity.DateOfTransaction = model.DateOfTransaction;
                 entity.ProductCount = model.ProductCount;
