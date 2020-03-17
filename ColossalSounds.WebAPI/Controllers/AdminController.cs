@@ -92,7 +92,7 @@ namespace ColossalSounds.WebAPI.Controllers
             }
         }
 
-        [OverrideAuthentication]
+        
         [HttpGet]
         [Route("GetRole/{userEmail}/")]
         public IHttpActionResult GetRole(string userEmail)
