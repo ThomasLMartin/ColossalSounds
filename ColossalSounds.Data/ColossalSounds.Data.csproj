@@ -93,6 +93,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingClass.cs" />
     <Compile Include="Review.cs" />
+    <Compile Include="Roles.cs" />
     <Compile Include="Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
