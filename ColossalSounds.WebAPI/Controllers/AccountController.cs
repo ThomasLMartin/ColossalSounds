@@ -328,11 +328,12 @@ namespace ColossalSounds.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            // we will utilize this code in a separate method later ------------
             var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
+                                                                  //-----------
+            // add user to "User" role
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);

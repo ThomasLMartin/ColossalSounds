@@ -1,0 +1,24 @@
+﻿
+DataLayer:
+	Create a RoleNames class (public static)
+	2 fields of static strings "Admin" and "User"
+
+
+
+
+Startup.cs:
+Create Seed Method in Startup.cs file (see notes in Startup.cs)
+
+Account Controller:
+	Add user to role within Register method in account controller
+	
+Admin Controller:
+	Method for Create Admin Account
+		- create a new user
+		- set new user to have a role of "Admin"
+		- validate with IdentityResult's Succeeded bool
+
+
+
+Steps to implement:
+

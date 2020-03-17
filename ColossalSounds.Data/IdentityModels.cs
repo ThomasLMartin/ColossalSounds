@@ -36,14 +36,10 @@ namespace ColossalSounds.Data
         public DbSet<Accessory> Accessories { get; set; }
         public DbSet<InstrumentClassification>Classifications { get; set; }
         public DbSet<Instrument> Instruments { get; set; }
-
-
         public DbSet<Customer> Customers { get; set; }
-
         public DbSet<Transaction> Transactions { get; set; }
-
-
         public DbSet<ProductRating> Ratings { get; set; }
+        public DbSet<Review> Reviews { get; set; }
         
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -57,7 +53,6 @@ namespace ColossalSounds.Data
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
         }
-        public DbSet<Review> Reviews { get; set; }
     }
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>
     {
