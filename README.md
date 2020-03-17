@@ -7,7 +7,6 @@ A database management app for a store owner, in this instance an instrument musi
 * [Technologies](#technologies)
 * [Installation](#installation)
 * [Functions](#functions)
-* [Usage](#usage)
 
 
 ## Introduction
