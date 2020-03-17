@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ColossalSounds.Data
 {
-    class Roles
+    public class Roles
     {
+        public static string Admin;
+        public static string User;
     }
 }
