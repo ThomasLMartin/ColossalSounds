@@ -14,7 +14,7 @@ namespace ColossalSounds.Data.Migrations
 
         protected override void Seed(ColossalSounds.Data.ApplicationDbContext context)
         {
-
+            
 
             context.Users.AddOrUpdate(p => p.Email, new ApplicationUser { Email = "party@partytown.com", PasswordHash = "Test2!", UserName = "part@partytown.com" });
             context.Users.AddOrUpdate(p => p.Email, new ApplicationUser { Email = "joehallam13@gmail.com", PasswordHash = "Payton5353:)", UserName = "joehallam13@gmail.com" });
@@ -47,10 +47,6 @@ namespace ColossalSounds.Data.Migrations
             context.Classifications.AddOrUpdate(p => p.ClassificationId, new InstrumentClassification { TypeOfCategory = InstrumentClassification.CategoryType.woodwind, TypeOfInstrument = InstrumentClassification.InstrumentType.clarinet });
             context.Instruments.AddOrUpdate(p => p.Name, new Instrument { Brand = "Yamaha", ModelName = "YCL-221", ExpLvl = ExperienceLevel.Intermediate, Price = 599.99m, Quantity = 3, Description = "A great student-class bass clarinet.", Name = "Yamah YCL-221 Bass Clarinet", InstrumentId = 1 });
             context.Customers.AddOrUpdate(p => p.CustomerId, new Customer { FirstName = "John", LastName = "Smith", StreetAddress = "123 Fake Street", City = "Holland", State = "Michigan", Email = "johnsmith123@gmail.com", PhoneNumber = "0123456789", Zipcode = "46038" });
-
-
-
-
 
 
 

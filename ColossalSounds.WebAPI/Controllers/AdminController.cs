@@ -26,12 +26,12 @@ namespace ColossalSounds.WebAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var newAdmin = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var newAdminUser = new ApplicationUser() { UserName = model.Email, Email = model.Email };
             var userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var userCreationResult = userManager.Create(newAdmin, model.Password);
+            var userCreationResult = userManager.Create(newAdminUser, model.Password);
             if (userCreationResult.Succeeded)
             {
-                var roleSetResult = userManager.AddToRole(newAdmin.Id, Roles.Admin);
+                var roleSetResult = userManager.AddToRole(newAdminUser.Id, Roles.Admin);
                 if (!roleSetResult.Succeeded)
                 {
                     return InternalServerError(new Exception("Role could not be assigned."));
@@ -47,7 +47,33 @@ namespace ColossalSounds.WebAPI.Controllers
         [Route("ToggleAdmin")]
         public IHttpActionResult ToggleAdminRole(string userEmail)
         {
-            var currentRole = GetRole(userEmail);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            using (var ctx = new ApplicationDbContext())
+            {
+                var currentRole = RoleGetter(userEmail);
+                var user = userManager.FindByEmail(userEmail);
+                if (currentRole == "This model is invalid")
+                {
+                    return BadRequest(ModelState);
+                }
+                else if(currentRole == "Admin")
+                {
+                    userManager.RemoveFromRole(user.Id, Roles.Admin);
+                    userManager.AddToRole(user.Id, Roles.User);
+                    return Ok("This user has been set to the role of User");
+                }
+                else if(currentRole == "User")
+                {
+                    userManager.RemoveFromRole(user.Id, Roles.User);
+                    userManager.AddToRole(user.Id, Roles.Admin);
+                    return Ok("This user has been set to the role of Admin");
+                }
+                return InternalServerError();
+            }
         }
         public string RoleGetter(string email)
         {
@@ -65,10 +91,6 @@ namespace ColossalSounds.WebAPI.Controllers
                 return currentRole;
             }
         }
-
-
-
-
 
         [OverrideAuthentication]
         [HttpGet]

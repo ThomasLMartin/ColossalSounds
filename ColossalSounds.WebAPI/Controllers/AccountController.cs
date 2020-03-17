@@ -332,8 +332,10 @@ namespace ColossalSounds.WebAPI.Controllers
             var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-                                                                  //-----------
+            //-----------
             // add user to "User" role
+            var userManager = Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            userManager.AddToRole(user.Id, Roles.User);
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
