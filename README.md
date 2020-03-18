@@ -50,7 +50,7 @@ To run this application
   - See all customers
   - Look up customer by phone number
   - Reviews and Ratings are created by customers and attached to the specific instrument or accessory
-  - Transaction function includes the ability to calculate subtotal, total (including tax), and update inventory count for products included in that transaction 
+  - Transaction function includes the ability iterate through a customers products to calculate subtotal and total (including tax)
 
 
 
