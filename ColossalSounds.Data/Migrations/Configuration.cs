@@ -17,7 +17,7 @@ namespace ColossalSounds.Data.Migrations
             
 
             context.Users.AddOrUpdate(p => p.Email, new ApplicationUser { Email = "party@partytown.com", PasswordHash = "Test2!", UserName = "part@partytown.com" });
-            context.Users.AddOrUpdate(p => p.Email, new ApplicationUser { Email = "joehallam13@gmail.com", PasswordHash = "Payton5353:)", UserName = "joehallam13@gmail.com" });
+            context.Users.AddOrUpdate(p => p.Email, new ApplicationUser { Email = "joehallam23@gmail.com", PasswordHash = "PuppyDog123:)", UserName = "joehallam23@gmail.com" });
             context.Classifications.AddOrUpdate(
                 p => p.ClassificationId,
                 new InstrumentClassification { TypeOfCategory = InstrumentClassification.CategoryType.brass, TypeOfInstrument = InstrumentClassification.InstrumentType.trombone, ClassificationId = 1 },
