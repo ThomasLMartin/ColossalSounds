@@ -25,20 +25,31 @@ namespace ColossalSounds.Services
                     //b. adds the price of the item to the subtotal
                     //c. increases the product count of the transaction by 1. 
                     List<string> itemList = new List<string>();
-                    foreach (int number in model.AllInstruments)
+
+                    for (int i = 0; i < 2; i++)
                     {
-                        Instrument example = ctx.Instruments.Where(e => e.InstrumentId == number).Single();
-                        itemList.Add(example.Name);
-                        entity.SubTotal = entity.SubTotal + ctx.Instruments.Where(e => e.InstrumentId == number).Single().Price;
-                        entity.ProductCount = entity.ProductCount + 1;
+                        if (model.AllInstruments != null && i == 0)
+                        {
+                            foreach (int number in model.AllInstruments)
+                            {
+                                Instrument example = ctx.Instruments.Where(e => e.InstrumentId == number).Single();
+                                itemList.Add(example.Name);
+                                entity.SubTotal = entity.SubTotal + ctx.Instruments.Where(e => e.InstrumentId == number).Single().Price;
+                                entity.ProductCount = entity.ProductCount + 1;
+                            }
+                        }
+                        else if (model.AllAccessories != null && i == 1)
+                        {
+                            foreach (int number in model.AllAccessories)
+                            {
+                                Accessory accessory = ctx.Accessories.Where(e => e.AccessoryId == number).Single();
+                                itemList.Add(accessory.Name);
+                                entity.SubTotal = entity.SubTotal + ctx.Accessories.Where(e => e.AccessoryId == number).Single().Price;
+                                entity.ProductCount = entity.ProductCount + 1;
+                            }
+                        }
                     }
-                    foreach (int number in model.AllAccessories)
-                    {
-                        Accessory accessory = ctx.Accessories.Where(e => e.AccessoryId == number).Single();
-                        itemList.Add(accessory.Name);
-                        entity.SubTotal = entity.SubTotal + ctx.Accessories.Where(e => e.AccessoryId == number).Single().Price;
-                        entity.ProductCount = entity.ProductCount + 1;
-                    }
+
                     entity.ItemsBought = itemList;
                     entity.CustomerId = model.CustomerId;
                     entity.DateOfTransaction = DateTime.Now;
