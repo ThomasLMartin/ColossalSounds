@@ -16,5 +16,7 @@ namespace ColossalSounds.Models.AccessoryModels
         public string Brand { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
+        public string Description { get; set; }
+        public double AverageRating { get; set; }
     }
 }

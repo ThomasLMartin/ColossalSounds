@@ -26,7 +26,7 @@ namespace ColossalSounds.Services
                 Brand = model.Brand,
                 Quantity = model.Quantity,
                 Price = model.Price,
-                Description = model.Description
+                Description = model.Description,
             };
 
             using (ApplicationDbContext ctx = new ApplicationDbContext())
@@ -51,14 +51,15 @@ namespace ColossalSounds.Services
                             InstrumentAssociated = e.InstrumentAssociated,
                             Brand = e.Brand,
                             Quantity = e.Quantity,
-                            Price = e.Price
+                            Price = e.Price,
+                            AverageRating = e.AverageRating,
                         }
                     );
                 return query.ToArray();
             }
         }
 
-        public AccessoryDetail GetAccessoryById(int id)
+        public AccessoryListItem GetAccessoryById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -67,13 +68,14 @@ namespace ColossalSounds.Services
                         .Accessories
                         .Single(e => e.AccessoryId == id);
                 return
-                    new AccessoryDetail
+                    new AccessoryListItem
                     {
                         Name = entity.Name,
                         Brand = entity.Brand,
                         Quantity = entity.Quantity,
                         Price = entity.Price,
-                        Description = entity.Description
+                        Description = entity.Description,
+                        AverageRating  = entity.AverageRating,
                     };
             }
         }
