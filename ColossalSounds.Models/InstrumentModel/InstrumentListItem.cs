@@ -26,5 +26,7 @@ namespace ColossalSounds.Models.InstrumentModel
         public decimal Price { get; set; }
 
         public int ClassificationId { get; set; }
+
+        public double AverageRating { get; set; }
     }
 }

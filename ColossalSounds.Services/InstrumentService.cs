@@ -59,6 +59,7 @@ namespace ColossalSounds.Services
                                     Quantity = e.Quantity,
                                     Price = e.Price,
                                     ClassificationId = e.ClassificationId,
+                                    AverageRating = e.AverageRating
                                 }
                         );
                 return query.ToArray();
@@ -86,6 +87,7 @@ namespace ColossalSounds.Services
                                     Quantity = e.Quantity,
                                     Price = e.Price,
                                     ClassificationId = e.ClassificationId,
+                                    AverageRating = e.AverageRating,
                                 }
                         );
                 return query.ToArray();
@@ -113,6 +115,7 @@ namespace ColossalSounds.Services
                                     Quantity = e.Quantity,
                                     Price = e.Price,
                                     ClassificationId = e.ClassificationId,
+                                    AverageRating = e.AverageRating,
                                 }
                         );
                 return query.ToArray();
@@ -140,6 +143,7 @@ namespace ColossalSounds.Services
                                     ExpLvl = e.ExpLvl,
                                     Quantity = e.Quantity,
                                     Price = e.Price,
+                                    AverageRating = e.AverageRating,
                                 }
                         );
                 return query.ToArray();
@@ -166,6 +170,7 @@ namespace ColossalSounds.Services
                                     ExpLvl = e.ExpLvl,
                                     Quantity = e.Quantity,
                                     Price = e.Price,
+                                    AverageRating = e.AverageRating,
                                 }
                         );
                 return query.ToArray();
@@ -193,23 +198,24 @@ namespace ColossalSounds.Services
                                     Quantity = e.Quantity,
                                     Price = e.Price,
                                     ClassificationId = e.ClassificationId,
+                                    AverageRating = e.AverageRating,
                                 }
                         );
                 return query.ToArray();
             }
         }
 
-        public IEnumerable<Instrument> GetInstrumentByInstrumentTypeAndExpLvl(int id)
+        public IEnumerable<InstrumentListItem> GetInstrumentByInstrumentTypeAndExpLvl(int Expid,int TypeId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Instruments
-                        .Where(e => e.InstrumentClassification.TypeOfInstrument == (InstrumentType)id && e.ExpLvl == (ExperienceLevel)id)
+                        .Where(e => e.InstrumentClassification.TypeOfInstrument == (InstrumentType)TypeId && e.ExpLvl == (ExperienceLevel)Expid)
                         .Select(
                             e =>
-                                new Instrument
+                                new InstrumentListItem
                                 {
                                     InstrumentId = e.InstrumentId,
                                     Description = e.Description,
@@ -220,14 +226,14 @@ namespace ColossalSounds.Services
                                     Quantity = e.Quantity,
                                     Price = e.Price,
                                     ClassificationId = e.ClassificationId,
-
+                                    AverageRating = e.AverageRating
                                 }
                         );
                 return query.ToArray();
             }
         }
 
-        public InstrumentDetail GetInstrumentById(int id)
+        public InstrumentListItem GetInstrumentById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -236,7 +242,7 @@ namespace ColossalSounds.Services
                         .Instruments
                         .Single(e => e.InstrumentId == id);
                 return
-                    new InstrumentDetail
+                    new InstrumentListItem
                     {
                         InstrumentId = entity.InstrumentId,
                         Description = entity.Description,
@@ -246,6 +252,7 @@ namespace ColossalSounds.Services
                         ExpLvl = entity.ExpLvl,
                         Quantity = entity.Quantity,
                         Price = entity.Price,
+                        AverageRating = entity.AverageRating,
                     };
             }
         }
