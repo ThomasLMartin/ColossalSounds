@@ -25,6 +25,7 @@ namespace ColossalSounds.WebAPI
             var ctx = new ApplicationDbContext();
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(ctx));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(ctx));
+           
             // the seed method will check if "Admin" role exists, if not it will create one
             if (!roleManager.RoleExists(Roles.Admin))
             {
