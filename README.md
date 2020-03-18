@@ -7,6 +7,7 @@ A database management app for a store owner, in this instance an instrument musi
 * [Technologies](#technologies)
 * [Installation](#installation)
 * [Functions](#functions)
+* [Resources](#resources)
 
 
 ## Introduction
@@ -35,10 +36,10 @@ To run this application
 ```
 
 ## Functions
-* Create, update, and delete instruments, accessories, customers, reviews, ranking, transactions, and admin users
+- Create, update, and delete instruments, accessories, customers, reviews, ranking, transactions, and admin users
   - Our instrument and customer update fuctions include the flexibility to update all feilds at once or one at a time. 
       
-* Instruments and accessories can be associated with overarching categories (woodwind, brass etc.) and instrument type (saxophone, guitar etc.)
+- Instruments and accessories can be associated with overarching categories (woodwind, brass etc.) and instrument type (saxophone, guitar etc.)
 
 - Viewing options include:
   - See all instruments
@@ -52,7 +53,13 @@ To run this application
   - Reviews and Ratings are created by customers and attached to the specific instrument or accessory
   - Transaction function includes the ability iterate through a customers products to calculate subtotal and total (including tax)
 
-
+## Resources
+- Creating User Roles (note these tutorials are for ASP.NET Core so we had to adapt the principles to ASP.NET Web API)
+  - [Extending UserIdentity](https://www.youtube.com/watch?v=NV734cJdZts&list=PL6n9fhu94yhVkdrusLaQsfERmL_Jh4XmU&index=78&t=0s)
+  - [Creating Roles](https://www.youtube.com/watch?v=TuJd2Ez9i3I&list=PL6n9fhu94yhVkdrusLaQsfERmL_Jh4XmU&index=79&t=0s)
+  
+- Displaying value of an Enum instead of the index number: [Json Converter](https://exceptionnotfound.net/serializing-enumerations-in-asp-net-web-api/)
+- Getting all values inside an Enum in ASP.NET Web API: [Returning Enum Values](https://exceptionnotfound.net/getting-all-valid-enum-values-in-asp-net-web-api/)
 
 
 
