@@ -12,7 +12,7 @@ A database management app for a store owner, in this instance an instrument musi
 ## Introduction
 This was a class project designed to give us hands on experience building out an API, working together as a team, and utilizing GitHub for as our version control software. Instruments were a common connection between the four of us, so we decided to tackle a project that would benefit an owner of a music store. Thinking more along the lines of a mom and pop type store.
 
-Our goal was to prove the owner with a multifunctional application that allowed them have the ability to create and manage a database for their inventory, customers, and transacations. While at the sametime giving them a platform to display their inventory online so that customers would be able to browser their products, leave reviews, and ratings that would allow an interactive shopping experience.
+Our goal was to provide the owner with a multifunctional application that allowed them have the ability to create and manage a database for their inventory, customers, and transacations. While at the sametime giving them a platform to display their inventory online so that customers would be able to browser their products, leave reviews, and ratings that would allow an interactive shopping experience.
 
 ## Technologies 
 Project is created with:
