@@ -273,7 +273,7 @@ namespace ColossalSounds.Services
                     {
                         entity.Description = model.Description;
                     }
-                    else if (model.Name != null & counter == 1)
+                    else if (model.Name != null && counter == 1)
                     {
                         entity.Name = model.Name;
                     }
