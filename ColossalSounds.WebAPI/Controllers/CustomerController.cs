@@ -17,6 +17,7 @@ namespace ColossalSounds.WebAPI.Controllers
             return customerService;
         }
 
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult GetAll()
         {
             CustomerServices customerService = CreateCustomerService();
@@ -24,6 +25,7 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok(customer);
         }
 
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult GetByPhoneNumber(string phoneNumber)
         {
             var service = CreateCustomerService(); 
@@ -39,6 +41,7 @@ namespace ColossalSounds.WebAPI.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Post(CustomerCreate customer)
         {
             if (!ModelState.IsValid)
@@ -52,6 +55,7 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Put(CustomerEdit customer, string phoneNumber)
         {
             if (!ModelState.IsValid)
@@ -67,6 +71,7 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Delete(int id)
         {
             if (!ModelState.IsValid)

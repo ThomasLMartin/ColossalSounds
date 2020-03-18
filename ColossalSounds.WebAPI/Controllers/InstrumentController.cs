@@ -21,6 +21,7 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok(instrument);
         }
 
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Post(InstrumentCreate instrument)
         {
             if (!ModelState.IsValid)
@@ -78,6 +79,7 @@ namespace ColossalSounds.WebAPI.Controllers
             return instrumentService;
         }
 
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Put(InstrumentEdit instrument)
         {
             if (!ModelState.IsValid)
@@ -91,6 +93,7 @@ namespace ColossalSounds.WebAPI.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Delete(int id)
         {
             var service = CreateInstrumentService();
