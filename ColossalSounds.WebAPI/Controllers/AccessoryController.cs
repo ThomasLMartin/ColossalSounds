@@ -36,6 +36,7 @@ namespace ColossalSounds.WebAPI.Controllers
         }
 
         //POST
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Post(AccessoryCreate accessory)
         {
             if (!ModelState.IsValid)
@@ -50,6 +51,7 @@ namespace ColossalSounds.WebAPI.Controllers
         }
 
         //PUT
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Put(AccessoryEdit accessory)
         {
             if (!ModelState.IsValid)
@@ -64,6 +66,7 @@ namespace ColossalSounds.WebAPI.Controllers
         }
 
         //DELETE
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Delete(int id)
         {
             var service = CreateAccessoryService();

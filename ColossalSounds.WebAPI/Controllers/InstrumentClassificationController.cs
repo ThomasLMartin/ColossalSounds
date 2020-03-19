@@ -35,7 +35,7 @@ namespace ColossalSounds.WebAPI.Controllers
         }
 
         //POST 
-
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Post(InstrumentClassificationCreate classification)
         {
             if (!ModelState.IsValid)
@@ -50,6 +50,7 @@ namespace ColossalSounds.WebAPI.Controllers
         }
 
         //PUT (UPDATE)
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Put(InstrumentClassificationEdit classification)
         {
             if (!ModelState.IsValid)
@@ -64,7 +65,7 @@ namespace ColossalSounds.WebAPI.Controllers
         }
 
         //DELETE
-
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult Delete(int id)
         {
             if (!ModelState.IsValid)
