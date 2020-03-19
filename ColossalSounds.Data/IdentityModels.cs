@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using static ColossalSounds.Data.ProductRating;
 
 namespace ColossalSounds.Data
 {
@@ -27,11 +28,20 @@ namespace ColossalSounds.Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Accessory> Accessories { get; set; }
+        public DbSet<InstrumentClassification>Classifications { get; set; }
+        public DbSet<Instrument> Instruments { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<ProductRating> Ratings { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder
