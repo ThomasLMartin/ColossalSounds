@@ -61,6 +61,8 @@ To run this application
 - Displaying value of an Enum instead of the index number: [Json Converter](https://exceptionnotfound.net/serializing-enumerations-in-asp-net-web-api/)
 - Getting all values inside an Enum in ASP.NET Web API: [Returning Enum Values](https://exceptionnotfound.net/getting-all-valid-enum-values-in-asp-net-web-api/)
 
+- The starting wireframe database tables for our project: [Colossal Sounds WireFrame](https://dbdiagram.io/d/5e5fc17b4495b02c3b87ca9e)
+
 
 
 
